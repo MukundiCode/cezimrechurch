@@ -5,6 +5,9 @@ from rest_framework import routers, serializers, viewsets
 
 urlpatterns = [
     path('', views.getMembers),
-    path('addMember', views.addMember),
-    path('addOffering', views.addOffering),
+    path('getMember/<memberId>', views.getMember, name = 'getMember'),
+    path('addMember', views.addMember, name = 'addMember'),
+    path('addOffering', views.addOffering, name = 'addOffering'),
+    path('getOfferings', views.getOfferings, name = 'getOfferings'),
+    path('getOfferingsByMemberId/<memberId>', views.getOfferingsByMemberId, name = 'getOfferingsByMemberId'),
 ]

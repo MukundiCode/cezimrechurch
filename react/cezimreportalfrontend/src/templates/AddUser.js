@@ -22,7 +22,7 @@ const AddUser = () => {
                     email: email, 
                     address: address, 
                     phoneNumber: phoneNumber, 
-                    birthday: birthday 
+                    birthday: birthday.getFullYear() + "-" + birthday.getMonth() + "-" + birthday.getDate()
                     };
 
     fetch('http://127.0.0.1:8000/members/addMember', {
