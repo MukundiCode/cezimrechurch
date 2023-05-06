@@ -1,7 +1,7 @@
 import NameList from "./NameList";
 import useFetch from "./useFetch";
 
-const Home = () => {
+const MembersList = () => {
   const { error, isPending, data: names } = useFetch('http://127.0.0.1:8000/members/')
 
   return (
@@ -13,4 +13,4 @@ const Home = () => {
   );
 }
  
-export default Home;
+export default MembersList;

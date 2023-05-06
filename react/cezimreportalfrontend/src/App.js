@@ -1,11 +1,15 @@
 import './App.css';
 import NameList from './templates/NameList';
 import Navbar from './templates/Navbar';
-import Home from './templates/Home';
+import MembersList from './templates/MembersList';
 import AddOffering from './templates/AddOffering';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
 import AddUser from './templates/AddUser';
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
+import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import Offerings from './templates/Offerings';
 
 
 function App() {
@@ -16,22 +20,18 @@ function App() {
           <Navbar />
           <div className="content">
             <Switch>
-              {/* <Route exact path="/">
-                <NameList/>
-              </Route> */}
-              <Route exact path="/home">
-                <Home/>
+              <Route exact path="/members">
+                <MembersList/>
               </Route>
-              <Route path="/addMember">
+              <Route exact path="/offerings">
+                <Offerings/>
+              </Route>
+              <Route exact path="/addMember">
                 <AddUser />
               </Route>
-              <Route path="/addOffering">
+              <Route exact path="/addOffering">
                 <AddOffering />
               </Route>
-              {/*
-              <Route path="*">
-                <NotFound />
-              </Route> */}
             </Switch>
           </div>
         </div>

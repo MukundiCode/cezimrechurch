@@ -41,8 +41,7 @@ const AddOffering = () => {
                 onChange={(e) => setMember(e.target.value)} 
                 type="text" 
                 class="form-control" 
-                id="inputName" 
-                placeholder="Member">
+                id="inputMember">
           </input>
       </div>
 
@@ -52,8 +51,7 @@ const AddOffering = () => {
                 onChange={(e) => setOfferingType(e.target.value)} 
                 type="text" 
                 class="form-control" 
-                id="inputSurname" 
-                placeholder="Surname">
+                id="inputOfferingType" >
         </input>
       </div>
 
@@ -63,19 +61,17 @@ const AddOffering = () => {
                 onChange={(e) => setAmount(e.target.value)} 
                 type="text" 
                 class="form-control" 
-                id="inputSurname" 
-                placeholder="Surname">
+                id="inputAmount" >
         </input>
       </div>
 
       <div class="form-group col-md-6">
-        <label for="inputSurname">Currency</label>
-        <input  value={amount} 
+        <label for="inputCurrency">Currency</label>
+        <input  value={currency} 
                 onChange={(e) => setCurrency(e.target.value)} 
                 type="text" 
                 class="form-control" 
-                id="inputSurname" 
-                placeholder="Surname">
+                id="inputCurrency" >
         </input>
       </div>
 
@@ -88,7 +84,7 @@ const AddOffering = () => {
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Add Member</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
 
       {isSuccessfullySubmitted && (
         <div className="success">Form submitted successfully</div>

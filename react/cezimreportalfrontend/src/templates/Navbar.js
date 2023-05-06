@@ -5,7 +5,7 @@ const Navbar = () => {
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">CE Zimre Portal</a>
+        <a class="navbar-brand" >CE Zimre Portal</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,18 +15,23 @@ const Navbar = () => {
               <Link to="/home" class="nav-link active" aria-current="page" href="#">Home</Link>
             </li>
             <li class="nav-item">
-              <Link to="/" class="nav-link" href="#">Dashboard</Link>
+              <Link to="/members" class="nav-link">Members</Link>
             </li>
             <li class="nav-item">
-              <Link to="/addMember" class="nav-link" href="#">Add Members</Link>
+              <Link to="/offerings" class="nav-link">Offerings</Link>
             </li>
             <li class="nav-item">
-              <Link to="/" class="nav-link">Givings</Link>
+              <Link to="/addMember" class="nav-link">Add Members</Link>
+            </li>
+            <li class="nav-item">
+              <Link to="/addOffering" class="nav-link">Add Offering</Link>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+
+    
 
   );
 }
