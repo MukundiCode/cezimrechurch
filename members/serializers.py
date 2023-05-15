@@ -6,7 +6,13 @@ class MemberSerializer(serializers.ModelSerializer):
         model = Member
         fields = "__all__"
 
-class OfferingSerializer(serializers.ModelSerializer):
+class OfferingOutputSerializer(serializers.ModelSerializer):
+    member = MemberSerializer()
+    class Meta:
+        model = Offering
+        fields = "__all__"
+
+class OfferingInputSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offering
         fields = "__all__"

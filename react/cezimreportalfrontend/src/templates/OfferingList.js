@@ -8,10 +8,10 @@ const OfferingList = ({ offerings }) => {
             <h3 class="p-2 bd-highlight">Total: { offerings.length } </h3>
             <ul class="list-group">
                 {offerings.map(offerings => (
-                    <li class="list-group-item" key={offerings.id} >  { offerings.member + " " + 
+                    <li class="list-group-item" key={offerings.id} >  { offerings.member.name + " " + 
                         offerings.amount + 
                         offerings.currency + " " + 
-                        offerings.currency} </li>
+                        offerings.date} </li>
                 ))}
             </ul>
         </div>

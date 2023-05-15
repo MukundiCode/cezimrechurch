@@ -10,4 +10,5 @@ urlpatterns = [
     path('addOffering', views.addOffering, name = 'addOffering'),
     path('getOfferings', views.getOfferings, name = 'getOfferings'),
     path('getOfferingsByMemberId/<memberId>', views.getOfferingsByMemberId, name = 'getOfferingsByMemberId'),
+    path('currencies', views.getCurrencies, name = 'getCurrencies'),
 ]

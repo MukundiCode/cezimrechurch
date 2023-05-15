@@ -25,10 +25,16 @@ class Repository:
     def deleteAllMembers(self):
         return Member.objects.all().delete()
     
+    def deleteAllOfferings(self):
+        return Offering.objects.all().delete()
+    
     def getOfferings(self):
         return Offering.objects.all()
     
     def getOfferingsByMemberId(self, memberId):
-        return Offering.objects.filter(member__pk = memberId )
+        return Offering.objects.filter(member__pk = memberId)
+    
+    def getCurrencies(self):
+        return Offering.CURRENCIES
     
 

@@ -3,12 +3,14 @@ from rest_framework.views import APIView
 from django.http import JsonResponse  
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.core.serializers import serialize
 from .models import Member
-from .serializers import MemberSerializer, OfferingSerializer
+from .serializers import MemberSerializer, OfferingInputSerializer, OfferingOutputSerializer
 from .repository import Repository
 import requests
 import json
 from django.http import HttpResponse
+from django.db import connection
 
 repository = Repository()
 
@@ -36,7 +38,7 @@ def getMember(request, memberId):
 
 @api_view(['POST'])
 def addOffering(request):
-    serializer = OfferingSerializer(data=request.data)
+    serializer = OfferingInputSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
     else:
@@ -46,12 +48,16 @@ def addOffering(request):
 @api_view(['GET'])
 def getOfferings(request):
     offerings = repository.getOfferings()
-    serializer = OfferingSerializer(offerings, many=True)
+    serializer = OfferingOutputSerializer(offerings, many = True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def getOfferingsByMemberId(request, memberId):
     offerings = repository.getOfferingsByMemberId(memberId)
-    serializer = OfferingSerializer(offerings, many=True)
+    serializer = OfferingOutputSerializer(offerings, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def getCurrencies(request):
+    return Response(repository.getCurrencies())
 

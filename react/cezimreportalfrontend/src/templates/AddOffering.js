@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Select from 'react-select';
 
 const AddOffering = () => {
   const [member, setMember] = useState('');
@@ -12,6 +13,16 @@ const AddOffering = () => {
   const history = useHistory();
   const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
 
+  const nameMap = new Map();
+  const membersAray = [];
+  const currencies = [{label:"USD", value: "USD"}, {label: "ZWL", value: "ZWL"}, {label: "ZAR", value: "ZAR"}];
+
+  fetch('http://127.0.0.1:8000/members/')
+  .then(res => res.json())
+  .then(data => data.forEach(element => {
+    nameMap.set(element.name, element.id);
+    membersAray.push({label: element.name, value: element.id});
+  }));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +32,7 @@ const AddOffering = () => {
                     offeringType: offeringType, 
                     amount: amount, 
                     currency: currency, 
-                    date: date, 
+                    date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
                     };
 
     fetch('http://127.0.0.1:8000/members/addOffering', {
@@ -35,15 +46,15 @@ const AddOffering = () => {
 
   return (
     <form onSubmit={handleSubmit} class="justify-content-center">
+
       <div class="form-group col-md-6  ">
         <label for="inputName">Member</label> 
-        <input  value={member} 
-                onChange={(e) => setMember(e.target.value)} 
-                type="text" 
-                class="form-control" 
-                id="inputMember">
-          </input>
+          <Select 
+            options = {membersAray}
+            onChange = {(e) => setMember(e.value)} 
+          />
       </div>
+
 
       <div class="form-group col-md-6">
         <label for="inputSurname">Offering Type</label> 
@@ -66,13 +77,11 @@ const AddOffering = () => {
       </div>
 
       <div class="form-group col-md-6">
-        <label for="inputCurrency">Currency</label>
-        <input  value={currency} 
-                onChange={(e) => setCurrency(e.target.value)} 
-                type="text" 
-                class="form-control" 
-                id="inputCurrency" >
-        </input>
+        <label for="exampleFormControlSelect1">Currency</label>
+        <Select 
+          options =  {currencies}
+          onChange={(e) => setCurrency(e.value)} 
+        />
       </div>
 
       <div class="form-row">
