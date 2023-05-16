@@ -10,6 +10,7 @@ import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import Offerings from './templates/Offerings';
+import Home from './templates/Home';
 
 
 function App() {
@@ -20,6 +21,12 @@ function App() {
           <Navbar />
           <div className="content">
             <Switch>
+              <Route exact path="/">
+                <Home/>
+              </Route>
+              <Route exact path="/home">
+                <Home/>
+              </Route>
               <Route exact path="/members">
                 <MembersList/>
               </Route>
