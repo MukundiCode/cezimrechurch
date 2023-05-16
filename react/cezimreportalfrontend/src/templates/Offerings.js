@@ -6,6 +6,11 @@ const Offerings = () => {
 
   return (
     <div className="home">
+      <div class="mt-2">
+        <h1>
+          Offerings
+        </h1>
+      </div>
       { error && <div>{ error }</div> }
       { isPending && <div>Loading...</div> }
       { offerings && <OfferingList offerings={offerings} /> }

@@ -4,16 +4,29 @@ const NameList = ({ names }) => {
     console.log(names)
 
     return (
-        <div className="name-list mt-4">
-            <h3 class="p-2 bd-highlight">Total: { names.length } </h3>
-            <ul class="list-group">
+        <div >
+            <table class="table table-striped mt-4">
+                <thead>
+                    <th scope= "col">ID</th>
+                    <th scope= "col">Name</th>
+                    <th scope= "col">Surname</th>
+                    <th scope= "col">Phone Number</th>
+                </thead>
+                <tbody>
                 {names.map(name => (
-                    <li class="list-group-item" key={name.id} >  { name.id + " " + name.name + " " + name.surname} </li>
+                    <tr>
+                        <th scope = "row"> {name.id} </th>
+                        <td>{name.name}</td>
+                        <td>{name.surname}</td>
+                        <td>{name.phoneNumber}</td>
+                    </tr>
                 ))}
-            </ul>
+                </tbody>
+
+
+            </table>
         </div>
     );
-
 }
  
 export default NameList;
