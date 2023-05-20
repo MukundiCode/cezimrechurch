@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import FormField from "./FormField";
 
 const AddUser = () => {
   const [name, setName] = useState('');
@@ -34,79 +35,40 @@ const AddUser = () => {
     })
   }
 
+  const formFileds = [
+                { value: name, onChange: setName, id: "inputName", placeholder: "Name" },
+                { value: surname, onChange: setSurname, id: "inputSurname", placeholder: "Surname" },
+                { value: email, onChange: setEmail, id: "inputEmail4", placeholder: "Email" },
+                { value: address, onChange: setAddress, id: "inputAddress", placeholder: "Address" },
+                { value: phoneNumber, onChange: setPhoneNumber, id: "inputPhoneNumber", placeholder: "Phone Number" }
+              ]
+
   return (
-    <form onSubmit={handleSubmit} class="justify-content-center">
-      <div class="form-group col-md-6  ">
-        <label for="inputName">Name</label>
-        <input  value={name} 
-                onChange={(e) => setName(e.target.value)} 
-                type="text" 
-                class="form-control" 
-                id="inputName" 
-                placeholder="Name">
-          </input>
-      </div>
+    <div className="d-flex justify-content-center align-items-center" style={{ height: '70vh' }}>
+      <div className="w-10">                      
+        <form onSubmit={handleSubmit} class="justify-content-center">
 
-      <div class="form-group col-md-6">
-        <label for="inputSurname">Surname</label>
-        <input  value={surname} 
-                onChange={(e) => setSurname(e.target.value)} 
-                type="text" 
-                class="form-control" 
-                id="inputSurname" 
-                placeholder="Surname">
-        </input>
-      </div>
+          {formFileds.map(field => (
+            <FormField form = {field} ></FormField>
+          ))}
 
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Email</label>
-          <input  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="email" 
-                  class="form-control" 
-                  id="inputEmail4" 
-                  placeholder="Email">
-          </input>
-        </div>
-      </div>
-
-      <div class="form-group col-md-6">
-        <label for="inputAddress">Address</label>
-        <input  value={address}
-                onChange={(e) => setAddress(e.target.value)} 
-                type="text" 
-                class="form-control" 
-                id="inputAddress" 
-                placeholder="1234 Main St">
-        </input>
-      </div>
-
-      <div class="form-group col-md-6">
-        <label for="inputPhoneNumber">Phone Number</label>
-        <input  value={phoneNumber} 
-                onChange={(e) => setPhoneNumber(e.target.value)} 
-                type="text" 
-                class="form-control" 
-                id="inputPhoneNumber">
-        </input>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-            <label for="inputDate">Birthday</label>
-            <i class="fas fa-calendar input-prefix"></i>
-            <DatePicker selected={birthday} onChange={(date) => setBirthday(date)} />
+          <div class="form-row">
+            <div class="form-group ">
+              <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+                <label for="inputDate">Birthday</label>
+                {/* <i class="fas fa-calendar input-prefix"></i> */}
+                <DatePicker selected={birthday} onChange={(date) => setBirthday(date)} />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Add Member</button>
+          <button type="submit" class="btn btn-primary mt-3">Add Member</button>
 
-      {isSuccessfullySubmitted && (
-        <div className="success">Form submitted successfully</div>
-      )}
+          {isSuccessfullySubmitted && (
+            <div className="success">Form submitted successfully</div>
+          )}
     </form>
+    </div>
+     </div>
   );
   
 }

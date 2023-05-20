@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const NameList = ({ names }) => {
-    console.log(names)
+    // console.log(names)
 
     return (
         <div >

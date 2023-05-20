@@ -45,9 +45,10 @@ const AddOffering = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} class="justify-content-center">
-
-      <div class="form-group col-md-6  ">
+    <div className="d-flex  justify-content-center align-items-center" style={{ height: '70vh' }}>
+      <div className="w-10">
+    <form onSubmit={handleSubmit} >
+      <div class="form-group">
         <label for="inputName">Member</label> 
           <Select 
             options = {membersAray}
@@ -55,8 +56,7 @@ const AddOffering = () => {
           />
       </div>
 
-
-      <div class="form-group col-md-6">
+      <div class="form-group ">
         <label for="inputSurname">Offering Type</label> 
         <input  value={offeringType} 
                 onChange={(e) => setOfferingType(e.target.value)} 
@@ -66,7 +66,7 @@ const AddOffering = () => {
         </input>
       </div>
 
-      <div class="form-group col-md-6">
+      <div class="form-group ">
         <label for="inputSurname">Amount</label>
         <input  value={amount} 
                 onChange={(e) => setAmount(e.target.value)} 
@@ -76,7 +76,7 @@ const AddOffering = () => {
         </input>
       </div>
 
-      <div class="form-group col-md-6">
+      <div class="form-group ">
         <label for="exampleFormControlSelect1">Currency</label>
         <Select 
           options =  {currencies}
@@ -85,7 +85,7 @@ const AddOffering = () => {
       </div>
 
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group ">
           <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
             <label for="inputDate">Date</label>
             <i class="fas fa-calendar input-prefix"></i>
@@ -93,12 +93,14 @@ const AddOffering = () => {
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
 
       {isSuccessfullySubmitted && (
         <div className="success">Form submitted successfully</div>
       )}
     </form>
+    </div>
+     </div>
   );
   
 }
