@@ -11,6 +11,8 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import Offerings from './templates/Offerings';
 import Home from './templates/Home';
+import Register from './templates/Register';
+import Login from './templates/Login';
 
 
 function App() {
@@ -38,6 +40,12 @@ function App() {
               </Route>
               <Route exact path="/addOffering">
                 <AddOffering />
+              </Route>
+              <Route exact path="/register">
+                <Register />
+              </Route>
+              <Route exact path="/login">
+                <Login />
               </Route>
             </Switch>
           </div>

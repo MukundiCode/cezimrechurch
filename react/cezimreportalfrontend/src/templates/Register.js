@@ -4,13 +4,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import FormField from "./FormField";
 
-const AddUser = () => {
+const Register = () => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [birthday, setBirthday] = useState(new Date());
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
   const history = useHistory();
   const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
 
@@ -18,15 +17,15 @@ const AddUser = () => {
     e.preventDefault();
     setIsSuccessfullySubmitted(true)
     const member = { 
-                    name: name, 
-                    surname: surname, 
+                    username: name + surname,
+                    first_name: name, 
+                    last_name: surname, 
                     email: email, 
-                    address: address, 
-                    phoneNumber: phoneNumber, 
-                    birthday: birthday.getFullYear() + "-" + birthday.getMonth() + "-" + birthday.getDate()
+                    password: password, 
+                    password2: password2, 
                     };
-
-    fetch('http://127.0.0.1:8000/members/addMember', {
+    console.log(member);
+    fetch('http://127.0.0.1:8000/auth/register/', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(member)
@@ -39,8 +38,8 @@ const AddUser = () => {
                 { value: name, onChange: setName, id: "inputName", placeholder: "Name" },
                 { value: surname, onChange: setSurname, id: "inputSurname", placeholder: "Surname" },
                 { value: email, onChange: setEmail, id: "inputEmail4", placeholder: "Email" },
-                { value: address, onChange: setAddress, id: "inputAddress", placeholder: "Address" },
-                { value: phoneNumber, onChange: setPhoneNumber, id: "inputPhoneNumber", placeholder: "Phone Number" }
+                { value: password, onChange: setPassword, id: "inputPassword", placeholder: "Password", type: "password" },
+                { value: password2, onChange: setPassword2, id: "inputPassword", placeholder: "Enter Password Again", type: "password" },
               ]
 
   return (
@@ -51,16 +50,7 @@ const AddUser = () => {
           {formFileds.map(field => (
             <FormField form = {field} ></FormField>
           ))}
-
-          <div class="form-row">
-            <div class="form-group ">
-              <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-                <label for="inputDate">Birthday</label>
-                <DatePicker selected={birthday} onChange={(date) => setBirthday(date)} />
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary mt-3">Add Member</button>
+          <button type="submit" class="btn btn-primary mt-3">Register</button>
 
           {isSuccessfullySubmitted && (
             <div className="success">Form submitted successfully</div>
@@ -72,4 +62,4 @@ const AddUser = () => {
   
 }
  
-export default AddUser;
+export default Register;

@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
+import FormField from "./FormField";
 
 const AddOffering = () => {
   const [member, setMember] = useState('');
@@ -44,43 +45,33 @@ const AddOffering = () => {
     })
   }
 
+  const formFileds = [
+    { value: offeringType, onChange: setOfferingType, id: "inputOfferingType", placeholder: "Offering Type" },
+    { value: amount, onChange: setAmount, id: "inputAmount", placeholder: "Amount" }
+  ]
+
   return (
     <div className="d-flex  justify-content-center align-items-center" style={{ height: '70vh' }}>
       <div className="w-10">
     <form onSubmit={handleSubmit} >
+
       <div class="form-group">
-        <label for="inputName">Member</label> 
           <Select 
             options = {membersAray}
             onChange = {(e) => setMember(e.value)} 
+            placeholder = "Member"
           />
       </div>
 
-      <div class="form-group ">
-        <label for="inputSurname">Offering Type</label> 
-        <input  value={offeringType} 
-                onChange={(e) => setOfferingType(e.target.value)} 
-                type="text" 
-                class="form-control" 
-                id="inputOfferingType" >
-        </input>
-      </div>
+      {formFileds.map(field => (
+            <FormField form = {field} ></FormField>
+          ))}
 
-      <div class="form-group ">
-        <label for="inputSurname">Amount</label>
-        <input  value={amount} 
-                onChange={(e) => setAmount(e.target.value)} 
-                type="text" 
-                class="form-control" 
-                id="inputAmount" >
-        </input>
-      </div>
-
-      <div class="form-group ">
-        <label for="exampleFormControlSelect1">Currency</label>
+      <div class="form-group mt-3">
         <Select 
           options =  {currencies}
           onChange={(e) => setCurrency(e.value)} 
+          placeholder = "Currency"
         />
       </div>
 
