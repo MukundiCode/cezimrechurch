@@ -13,6 +13,7 @@ import Offerings from './templates/Offerings';
 import Home from './templates/Home';
 import Register from './templates/Register';
 import Login from './templates/Login';
+import AddChurch from './templates/AddChurch';
 
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
               </Route>
               <Route exact path="/login">
                 <Login />
+              </Route>
+              <Route exact path="/addChurch">
+                <AddChurch />
               </Route>
             </Switch>
           </div>

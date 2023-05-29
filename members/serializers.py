@@ -1,9 +1,14 @@
 from rest_framework import serializers
-from .models import Member, Offering
+from .models import Member, Offering, Church
 
 class MemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Member
+        fields = "__all__"
+
+class ChurchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Church
         fields = "__all__"
 
 class OfferingOutputSerializer(serializers.ModelSerializer):

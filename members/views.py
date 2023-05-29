@@ -45,6 +45,11 @@ def addOffering(request):
         print("Error",serializer.errors)
     return Response(serializer.data)
 
+@api_view(['POST'])
+def addChurch(request):
+    #finish this mangwana, 
+    return Response(request.data)
+
 @api_view(['GET'])
 def getOfferings(request):
     offerings = repository.getOfferings()
