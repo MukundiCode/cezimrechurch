@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.core.serializers import serialize
-from .models import Member
+from .models import Church, Member
 from .serializers import MemberSerializer, OfferingInputSerializer, OfferingOutputSerializer
 from .repository import Repository
 import requests
@@ -47,7 +47,12 @@ def addOffering(request):
 
 @api_view(['POST'])
 def addChurch(request):
-    #finish this mangwana, 
+    Church.objects.all().delete()
+    church = Church(zone = request.data['zone'],
+                    subgroup = request.data['subgroup'],
+                    location = request.data['location'],
+                    admin = request.user)
+    church.save()
     return Response(request.data)
 
 @api_view(['GET'])

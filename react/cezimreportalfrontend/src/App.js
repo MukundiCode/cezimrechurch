@@ -14,21 +14,28 @@ import Home from './templates/Home';
 import Register from './templates/Register';
 import Login from './templates/Login';
 import AddChurch from './templates/AddChurch';
+import PrivateRoute from './templates/utils/PrivateRoute';
+import { AuthProvider } from './context/AuthProvider';
 
 
 function App() {
   
     return (
       <Router>
+        <AuthProvider>
         <div className="App">
           <Navbar />
           <div className="content">
             <Switch>
               <Route exact path="/">
-                <Home/>
+              <PrivateRoute> 
+                  <Home/> 
+                </PrivateRoute>
               </Route>
               <Route exact path="/home">
-                <Home/>
+                <PrivateRoute> 
+                  <Home/> 
+                </PrivateRoute>
               </Route>
               <Route exact path="/members">
                 <MembersList/>
@@ -54,6 +61,7 @@ function App() {
             </Switch>
           </div>
         </div>
+        </AuthProvider>
       </Router>
     );
 }

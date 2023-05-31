@@ -1,31 +1,44 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import FormField from "./FormField";
+import AuthContext from "../context/AuthProvider";
 
 const Login = () => {
   const [username, setName] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
   const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
+  let {loginUser} = useContext(AuthContext)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSuccessfullySubmitted(true)
-    const member = { 
-                    username: username ,
-                    password: password, 
-                    };
-    console.log(member);
-    fetch('http://127.0.0.1:8000/auth/login/', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(member)
-    }).then(() => {
-      history.push('/');
-    })
-  }
+
+  let handleSubmit = async (e) => {
+    e.preventDefault()
+    loginUser(e, username, password)
+    // const member = { 
+    //   username: username ,
+    //   password: password, 
+    //   };
+    // const response = await fetch('http://127.0.0.1:8000/auth/login/', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(member)
+    // });
+
+    // let data = await response.json();
+
+    // if(data){
+    //     console.log(data)
+    // } else {
+    //     alert('Something went wrong while loggin in the user!')
+    // }
+}
+
+
+
 
   const formFileds = [
                 { value: username, onChange: setName, id: "inputName", placeholder: "Username" },

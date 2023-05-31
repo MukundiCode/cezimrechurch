@@ -22,7 +22,10 @@ const AddChurch = () => {
 
     fetch('http://127.0.0.1:8000/members/addChurch', {
       method: 'POST',
-      headers: { "Content-Type": "application/json" },
+      // headers: { "Content-Type": "application/json", "Authorization": "" },
+      headers: {"Content-Type": "application/json", 
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NTYwMjM4LCJpYXQiOjE2ODU1NTk5MzgsImp0aSI6ImU2Mzc2YjJkNGFiZDRhMGE4NTVjY2E5N2E2MWM3YjA3IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJNdWt1bmRpIn0.9LYxmKIsH0vm0nltJrmGKr3GAQxcSBrOcgFpOEwzqgk" },
+
       body: JSON.stringify(member)
     }).then(() => {
       history.push('/');
@@ -30,9 +33,9 @@ const AddChurch = () => {
   }
 
   const formFileds = [
-                { value: zone, onChange: setZone, id: "inputName", placeholder: "Zone" },
-                { value: subgroup, onChange: setSubgroup, id: "inputSurname", placeholder: "Sub Group" },
-                { value: location, onChange: setLocation, id: "inputEmail4", placeholder: "Location" }
+                { value: zone, onChange: setZone, id: "inputZone", placeholder: "Zone" },
+                { value: subgroup, onChange: setSubgroup, id: "inputGroup", placeholder: "Sub Group" },
+                { value: location, onChange: setLocation, id: "inputLocation", placeholder: "Location" }
               ]
 
   return (
