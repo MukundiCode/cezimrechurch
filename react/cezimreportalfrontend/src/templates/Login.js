@@ -16,29 +16,7 @@ const Login = () => {
   let handleSubmit = async (e) => {
     e.preventDefault()
     loginUser(e, username, password)
-    // const member = { 
-    //   username: username ,
-    //   password: password, 
-    //   };
-    // const response = await fetch('http://127.0.0.1:8000/auth/login/', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(member)
-    // });
-
-    // let data = await response.json();
-
-    // if(data){
-    //     console.log(data)
-    // } else {
-    //     alert('Something went wrong while loggin in the user!')
-    // }
 }
-
-
-
 
   const formFileds = [
                 { value: username, onChange: setName, id: "inputName", placeholder: "Username" },

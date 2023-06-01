@@ -16,13 +16,15 @@ repository = Repository()
 
 @api_view(['POST'])
 def addMember(request):
-    serializer = MemberSerializer(data=request.data)
-    if serializer.is_valid():
-        print("Saving...",serializer)
-        serializer.save()
-    else:
-        print("Error",serializer.errors)
-    return Response(serializer.data)
+    member = Member(name = request.data['name'],
+                    surname = request.data['surname'],
+                    email = request.data['email'],
+                    address = request.data['address'],
+                    phoneNumber = request.data['phoneNumber'],
+                    birthday = request.data['birthday'],
+                    church = Church.objects.filter(admin_id = request.user.id).first())
+    member.save()
+    return Response(request.data)
 
 @api_view(['GET'])
 def getMembers(request):

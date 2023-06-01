@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import FormField from "./FormField";
+import AuthContext from "../context/AuthProvider";
 
 const AddUser = () => {
   const [name, setName] = useState('');
@@ -13,22 +14,27 @@ const AddUser = () => {
   const [birthday, setBirthday] = useState(new Date());
   const history = useHistory();
   const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
+  const { authTokens, logoutUser } = useContext(AuthContext);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSuccessfullySubmitted(true)
-    const member = { 
-                    name: name, 
-                    surname: surname, 
-                    email: email, 
-                    address: address, 
-                    phoneNumber: phoneNumber, 
-                    birthday: birthday.getFullYear() + "-" + birthday.getMonth() + "-" + birthday.getDate()
-                    };
+    const member = {
+      name: name,
+      surname: surname,
+      email: email,
+      address: address,
+      phoneNumber: phoneNumber,
+      birthday: birthday.getFullYear() + "-" + birthday.getMonth() + "-" + birthday.getDate()
+    };
 
     fetch('http://127.0.0.1:8000/members/addMember', {
       method: 'POST',
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + String(authTokens.access)
+      },
       body: JSON.stringify(member)
     }).then(() => {
       history.push('/');
@@ -36,20 +42,20 @@ const AddUser = () => {
   }
 
   const formFileds = [
-                { value: name, onChange: setName, id: "inputName", placeholder: "Name" },
-                { value: surname, onChange: setSurname, id: "inputSurname", placeholder: "Surname" },
-                { value: email, onChange: setEmail, id: "inputEmail4", placeholder: "Email" },
-                { value: address, onChange: setAddress, id: "inputAddress", placeholder: "Address" },
-                { value: phoneNumber, onChange: setPhoneNumber, id: "inputPhoneNumber", placeholder: "Phone Number" }
-              ]
+    { value: name, onChange: setName, id: "inputName", placeholder: "Name" },
+    { value: surname, onChange: setSurname, id: "inputSurname", placeholder: "Surname" },
+    { value: email, onChange: setEmail, id: "inputEmail4", placeholder: "Email" },
+    { value: address, onChange: setAddress, id: "inputAddress", placeholder: "Address" },
+    { value: phoneNumber, onChange: setPhoneNumber, id: "inputPhoneNumber", placeholder: "Phone Number" }
+  ]
 
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ height: '70vh' }}>
-      <div className="w-10">                      
+      <div className="w-10">
         <form onSubmit={handleSubmit} class="justify-content-center">
 
           {formFileds.map(field => (
-            <FormField form = {field} ></FormField>
+            <FormField form={field} ></FormField>
           ))}
 
           <div class="form-row">
@@ -65,11 +71,11 @@ const AddUser = () => {
           {isSuccessfullySubmitted && (
             <div className="success">Form submitted successfully</div>
           )}
-    </form>
+        </form>
+      </div>
     </div>
-     </div>
   );
-  
+
 }
- 
+
 export default AddUser;

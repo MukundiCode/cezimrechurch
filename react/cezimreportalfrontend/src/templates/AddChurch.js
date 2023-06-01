@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext  } from "react";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import FormField from "./FormField";
+import AuthContext from "../context/AuthProvider";
 
 const AddChurch = () => {
   const [zone, setZone] = useState('');
@@ -10,6 +11,7 @@ const AddChurch = () => {
   const [location, setLocation] = useState('');
   const history = useHistory();
   const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
+  const { authTokens, logoutUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,9 +24,8 @@ const AddChurch = () => {
 
     fetch('http://127.0.0.1:8000/members/addChurch', {
       method: 'POST',
-      // headers: { "Content-Type": "application/json", "Authorization": "" },
       headers: {"Content-Type": "application/json", 
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NTYwMjM4LCJpYXQiOjE2ODU1NTk5MzgsImp0aSI6ImU2Mzc2YjJkNGFiZDRhMGE4NTVjY2E5N2E2MWM3YjA3IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJNdWt1bmRpIn0.9LYxmKIsH0vm0nltJrmGKr3GAQxcSBrOcgFpOEwzqgk" },
+                "Authorization": "Bearer " + String(authTokens.access) },
 
       body: JSON.stringify(member)
     }).then(() => {
