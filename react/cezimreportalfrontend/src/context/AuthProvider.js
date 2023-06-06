@@ -72,6 +72,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('authTokens', JSON.stringify(data))
         } else {
             logoutUser()
+            window.location.href = "/login"
         }
 
         if (loading) {
