@@ -9,6 +9,7 @@ urlpatterns = [
     path('addMember', views.addMember, name = 'addMember'),
     path('addOffering', views.addOffering, name = 'addOffering'),
     path('addChurch', views.addChurch, name = 'addChurch'),
+    path('getMember/memberId', views.getMember, name = 'getMember'),
     path('getOfferings', views.getOfferings, name = 'getOfferings'),
     path('getOfferingsByMemberId/<memberId>', views.getOfferingsByMemberId, name = 'getOfferingsByMemberId'),
     path('currencies', views.getCurrencies, name = 'getCurrencies'),

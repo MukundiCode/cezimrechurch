@@ -19,35 +19,43 @@ import { AuthProvider } from './context/AuthProvider';
 
 
 function App() {
-  
-    return (
-      <Router>
-        <AuthProvider>
+
+  return (
+    <Router>
+      <AuthProvider>
         <div className="App">
           <Navbar />
           <div className="content">
             <Switch>
               <Route exact path="/">
-              <PrivateRoute> 
-                  <Home/> 
+                <PrivateRoute>
+                  <Home />
                 </PrivateRoute>
               </Route>
               <Route exact path="/home">
-                <PrivateRoute> 
-                  <Home/> 
+                <PrivateRoute>
+                  <Home />
                 </PrivateRoute>
               </Route>
               <Route exact path="/members">
-                <MembersList/>
+                <PrivateRoute>
+                  <MembersList />
+                </PrivateRoute>
               </Route>
               <Route exact path="/offerings">
-                <Offerings/>
+                <PrivateRoute>
+                  <Offerings />
+                </PrivateRoute>
               </Route>
               <Route exact path="/addMember">
-                <AddUser />
+                <PrivateRoute>
+                  <AddUser />
+                </PrivateRoute>
               </Route>
               <Route exact path="/addOffering">
-                <AddOffering />
+                <PrivateRoute>
+                  <AddOffering />
+                </PrivateRoute>
               </Route>
               <Route exact path="/register">
                 <Register />
@@ -56,14 +64,16 @@ function App() {
                 <Login />
               </Route>
               <Route exact path="/addChurch">
-                <AddChurch />
+                <PrivateRoute>
+                  <AddChurch />
+                </PrivateRoute>
               </Route>
             </Switch>
           </div>
         </div>
-        </AuthProvider>
-      </Router>
-    );
+      </AuthProvider>
+    </Router>
+  );
 }
 
 export default App;

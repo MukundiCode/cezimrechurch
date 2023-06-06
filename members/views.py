@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from django.http import JsonResponse  
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.exceptions import ValidationError, ParseError, NotFound
 from django.core.serializers import serialize
 from .models import Church, Member
 from .serializers import MemberSerializer, OfferingInputSerializer, OfferingOutputSerializer
@@ -11,62 +12,87 @@ import requests
 import json
 from django.http import HttpResponse
 from django.db import connection
+from django.core.validators import validate_email
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 repository = Repository()
 
 @api_view(['POST'])
 def addMember(request):
-    member = Member(name = request.data['name'],
-                    surname = request.data['surname'],
-                    email = request.data['email'],
-                    address = request.data['address'],
-                    phoneNumber = request.data['phoneNumber'],
-                    birthday = request.data['birthday'],
-                    church = Church.objects.filter(admin_id = request.user.id).first())
-    member.save()
+    try:
+        validate_email(request.data['email'])
+        member = Member(name = request.data['name'],
+                        surname = request.data['surname'],
+                        email = request.data['email'],
+                        address = request.data['address'],
+                        phoneNumber = request.data['phoneNumber'],
+                        birthday = request.data['birthday'],
+                        church = Church.objects.filter(admin_id = request.user.id).first())
+        member.save()
+    except :
+        raise ValidationError
     return Response(request.data)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getMembers(request):
-    members = repository.getMembers()
-    serializer = MemberSerializer(members, many=True)
+    try:
+        members = repository.getMembers()
+        serializer = MemberSerializer(members, many=True)
+    except:
+        raise NotFound
     return Response(serializer.data)
 
 @api_view(['GET'])
 def getMember(request, memberId):
-    member = repository.getMemberById(memberId)
-    serializer = MemberSerializer(member)
+    try:
+        member = repository.getMemberById(memberId)
+        serializer = MemberSerializer(member)
+    except:
+        raise NotFound
     return Response(serializer.data)
 
 @api_view(['POST'])
 def addOffering(request):
-    serializer = OfferingInputSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    else:
-        print("Error",serializer.errors)
+    try:
+        serializer = OfferingInputSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+    except:
+        raise ValidationError
     return Response(serializer.data)
 
 @api_view(['POST'])
 def addChurch(request):
-    Church.objects.all().delete()
-    church = Church(zone = request.data['zone'],
-                    subgroup = request.data['subgroup'],
-                    location = request.data['location'],
-                    admin = request.user)
-    church.save()
+    try:
+        Church.objects.all().delete()
+        church = Church(zone = request.data['zone'],
+                        subgroup = request.data['subgroup'],
+                        location = request.data['location'],
+                        admin = request.user)
+        church.save()
+    except:
+        raise ValidationError
     return Response(request.data)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getOfferings(request):
-    offerings = repository.getOfferings()
-    serializer = OfferingOutputSerializer(offerings, many = True)
+    try:
+        offerings = repository.getOfferings()
+        serializer = OfferingOutputSerializer(offerings, many = True)
+    except:
+        raise NotFound
     return Response(serializer.data)
 
 @api_view(['GET'])
 def getOfferingsByMemberId(request, memberId):
-    offerings = repository.getOfferingsByMemberId(memberId)
-    serializer = OfferingOutputSerializer(offerings, many=True)
+    try:
+        offerings = repository.getOfferingsByMemberId(memberId)
+        serializer = OfferingOutputSerializer(offerings, many=True)
+    except:
+        raise NotFound
     return Response(serializer.data)
 
 @api_view(['GET'])

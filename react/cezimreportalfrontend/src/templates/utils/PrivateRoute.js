@@ -8,6 +8,7 @@ const PrivateRoute = ({children, ...rest}) => {
 
     let { user } = useContext(AuthContext)
 
+    console.log(user)
     return !user ?  <Redirect to='/login'/> : children;
 }
 
