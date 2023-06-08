@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import FormField from "./FormField";
 import AuthContext from "../context/AuthProvider";
-import UsePost from "./usePost";
+import GenerictPost from "./usePost";
 
 const AddChurch = () => {
   const [zone, setZone] = useState('');
@@ -14,27 +14,15 @@ const AddChurch = () => {
   const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
   const { authTokens, logoutUser } = useContext(AuthContext);
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSuccessfullySubmitted(true)
-    const member = {
+    const church = {
       zone: zone,
       subgroup: subgroup,
       location: location,
     };
-
-    const { error, isPending, data: names } = UsePost('http://127.0.0.1:8000/members/addChurch', member)
-
-    fetch('http://127.0.0.1:8000/members/addChurch', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + String(authTokens.access)
-      },
-      body: JSON.stringify(member)
-    }).then(() => {
-      history.push('/');
-    })
+    GenerictPost('http://127.0.0.1:8000/members/addChurch', church, authTokens)
   }
 
   const formFileds = [

@@ -4,7 +4,6 @@ import Navbar from './templates/Navbar';
 import MembersList from './templates/MembersList';
 import AddOffering from './templates/AddOffering';
 import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
-import AddUser from './templates/AddUser';
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
@@ -16,6 +15,7 @@ import Login from './templates/Login';
 import AddChurch from './templates/AddChurch';
 import PrivateRoute from './templates/utils/PrivateRoute';
 import { AuthProvider } from './context/AuthProvider';
+import AddMember from './templates/AddMember';
 
 
 function App() {
@@ -49,7 +49,7 @@ function App() {
               </Route>
               <Route exact path="/addMember">
                 <PrivateRoute>
-                  <AddUser />
+                  <AddMember />
                 </PrivateRoute>
               </Route>
               <Route exact path="/addOffering">

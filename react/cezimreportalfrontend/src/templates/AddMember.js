@@ -6,8 +6,9 @@ import FormField from "./FormField";
 import AuthContext from "../context/AuthProvider";
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+import GenerictPost from "./usePost";
 
-const AddUser = () => {
+const AddMember = () => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
@@ -32,23 +33,7 @@ const AddUser = () => {
     };
     console.log(isValidPhoneNumber(phoneNumber))
 
-    const response = await fetch('http://127.0.0.1:8000/members/addMember', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + String(authTokens.access)
-      },
-      body: JSON.stringify(member)
-    })
-    // .then(() => {
-    //   history.push('/');
-    // })
-
-    let data = await response.json()
-
-    if (data) {
-      console.log(data.headers)
-    }
+    GenerictPost('http://127.0.0.1:8000/members/addMember', member, authTokens)
   }
 
   const formFileds = [
@@ -95,4 +80,4 @@ const AddUser = () => {
 
 }
 
-export default AddUser;
+export default AddMember;

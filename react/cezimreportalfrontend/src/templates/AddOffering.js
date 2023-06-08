@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 import FormField from "./FormField";
 import AuthContext from "../context/AuthProvider";
+import GenerictPost from "./usePost";
+import useFetch from "./useFetch";
 
 const AddOffering = () => {
   const [member, setMember] = useState('');
@@ -43,16 +45,8 @@ const AddOffering = () => {
       date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
     };
 
-    fetch('http://127.0.0.1:8000/members/addOffering', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + String(authTokens.access)
-      },
-      body: JSON.stringify(offering)
-    }).then(() => {
-      history.push('/');
-    })
+    GenerictPost('http://127.0.0.1:8000/members/addOffering', offering, authTokens)
+
   }
 
   const formFileds = [
