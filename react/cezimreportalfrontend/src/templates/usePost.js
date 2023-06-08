@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
 
-const useFetch = (url) => {
+function UsePost(url, body) {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
@@ -15,14 +15,15 @@ const useFetch = (url) => {
         {
           signal: abortCont.signal,
           headers: {
-            method: 'GET',
+            method: 'POST',
             "Content-Type": "application/json",
             "Authorization": "Bearer " + String(authTokens.access)
           },
+          body: JSON.stringify(body)
         })
         .then(res => {
           if (!res.ok) { // error coming back from server
-            throw Error('could not fetch the data for that resource');
+            throw Error('could not post the data ');
           }
           return res.json();
         })
@@ -35,18 +36,16 @@ const useFetch = (url) => {
           if (err.name === 'AbortError') {
             console.log('fetch aborted')
           } else {
-            // auto catches network / connection error
             setIsPending(false);
             setError(err.message);
           }
         })
     }, 1000);
 
-    // abort the fetch
     return () => abortCont.abort();
   }, [url])
 
   return { data, isPending, error };
 }
 
-export default useFetch;
+export default UsePost;

@@ -2,7 +2,7 @@ import NameList from "./NameList";
 import useFetch from "./useFetch";
 
 const MembersList = () => {
-  const { error, isPending, data: names } = useFetch('http://127.0.0.1:8000/members/')
+  const { error, isPending, data: names } = useFetch('http://127.0.0.1:8000/members/', 'GET')
 
   return (
     <div className="home">
