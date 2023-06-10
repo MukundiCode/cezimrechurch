@@ -13,8 +13,9 @@ const AddChurch = () => {
   const history = useHistory();
   const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
   const { authTokens, logoutUser } = useContext(AuthContext);
+  let [response, setResponse] = useState()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSuccessfullySubmitted(true)
     const church = {
@@ -22,7 +23,7 @@ const AddChurch = () => {
       subgroup: subgroup,
       location: location,
     };
-    GenerictPost('http://127.0.0.1:8000/members/addChurch', church, authTokens)
+    response = setResponse(await GenerictPost('http://127.0.0.1:8000/members/addChurch', church, authTokens))
   }
 
   const formFileds = [
@@ -41,10 +42,13 @@ const AddChurch = () => {
           ))}
 
           <button type="submit" class="btn btn-primary mt-3">Create Church</button>
-
-          {isSuccessfullySubmitted && (
-            <div className="success">Form submitted successfully</div>
-          )}
+          {
+            response != null && (
+            (response.status == 200 && (<div className="success">The form was submitted successfully</div>)) || 
+            (response.status == 400 && (<div className="success">There was an error in submitting the form</div>)) || 
+            (response.status == 401 && (<div className="success">You are not authorized to add a member, please log in</div>))
+            )
+          }
         </form>
       </div>
     </div>

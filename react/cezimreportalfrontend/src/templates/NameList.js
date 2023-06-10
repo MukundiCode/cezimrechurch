@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 const NameList = ({ names }) => {
-    // console.log(names)
 
     return (
         <div >
@@ -19,6 +18,9 @@ const NameList = ({ names }) => {
                         <td>{name.name}</td>
                         <td>{name.surname}</td>
                         <td>{name.phoneNumber}</td>
+                        <td>
+                            <button class="btn btn-primary">View</button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>

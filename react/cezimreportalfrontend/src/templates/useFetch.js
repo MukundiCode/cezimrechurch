@@ -15,7 +15,6 @@ const useFetch = (url) => {
         {
           signal: abortCont.signal,
           headers: {
-            method: 'GET',
             "Content-Type": "application/json",
             "Authorization": "Bearer " + String(authTokens.access)
           },

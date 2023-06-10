@@ -32,14 +32,13 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('authTokens', JSON.stringify(data));
             setAuthTokens(data)
             setUser(jwtDecode(data.access))
-            console.log("Tokens " + authTokens)
             console.log(authTokens)
-            console.log("User" + user)
             console.log(user)
             window.location.href = "/"
         } else {
             alert('Something went wrong while loggin in the user!')
         }
+        
     }
 
     let logoutUser = (e) => {

@@ -16,13 +16,12 @@ const AddMember = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [birthday, setBirthday] = useState(new Date());
   const history = useHistory();
-  const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
   const { authTokens, logoutUser } = useContext(AuthContext);
+  let [response, setResponse] = useState()
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSuccessfullySubmitted(true)
     const member = {
       name: name,
       surname: surname,
@@ -31,9 +30,7 @@ const AddMember = () => {
       phoneNumber: phoneNumber,
       birthday: birthday.getFullYear() + "-" + birthday.getMonth() + "-" + birthday.getDate()
     };
-    console.log(isValidPhoneNumber(phoneNumber))
-
-    GenerictPost('http://127.0.0.1:8000/members/addMember', member, authTokens)
+    response = setResponse(await GenerictPost('http://127.0.0.1:8000/members/addMember', member, authTokens))
   }
 
   const formFileds = [
@@ -69,10 +66,13 @@ const AddMember = () => {
             </div>
           </div>
           <button type="submit" class="btn btn-primary mt-3">Add Member</button>
-
-          {isSuccessfullySubmitted && (
-            <div className="success">Form submitted successfully</div>
-          )}
+          {
+            response != null && (
+            (response.status == 200 && (<div className="success">The form was submitted successfully</div>)) || 
+            (response.status == 400 && (<div className="success">There was an error in submitting the form</div>)) || 
+            (response.status == 401 && (<div className="success">You are not authorized to add a member, please log in</div>))
+            )
+          }
         </form>
       </div>
     </div>
