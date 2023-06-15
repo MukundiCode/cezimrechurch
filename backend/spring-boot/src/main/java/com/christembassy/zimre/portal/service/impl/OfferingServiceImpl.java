@@ -7,17 +7,21 @@ import com.christembassy.zimre.portal.repository.OfferingRepository;
 import com.christembassy.zimre.portal.service.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Set;
 
 @Service
+@EnableTransactionManagement
 public class OfferingServiceImpl implements OfferingService {
 
   @Autowired
   private OfferingRepository offeringRepository;
 
   @Override
+  @Transactional
   public Offering addNew(Offering offering) {
     offering.setDate(LocalDate.now());
     return offeringRepository.save(offering);

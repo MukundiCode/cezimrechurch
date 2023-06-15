@@ -1,12 +1,13 @@
 package com.christembassy.zimre.portal.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Member {
+public class Member implements Serializable {
 
   @Id
   @Column

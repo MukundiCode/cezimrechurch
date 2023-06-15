@@ -3,13 +3,14 @@ package com.christembassy.zimre.portal.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Currency;
 import java.util.Objects;
 
 @Entity
-public class Offering {
+public class Offering implements Serializable {
 
   @Id
   @Column(nullable = false)
@@ -30,7 +31,7 @@ public class Offering {
 
   @JsonProperty
   @ManyToOne
-  @JoinColumn(name = "member_id", nullable = false)
+  @JoinColumn(name = "member_id")
   private Member member;
 
   public Offering() {

@@ -18,7 +18,7 @@ public class OfferingControllerImpl implements OfferingController {
 
   @Override
   @PostMapping("/new")
-  public Offering newOffering(Offering newOffering) {
+  public Offering newOffering(@RequestBody Offering newOffering) {
     System.out.println("newOffering = " + newOffering);
     return offeringService.addNew(newOffering);
   }
