@@ -1,5 +1,7 @@
 package com.christembassy.zimre.portal.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -33,6 +35,7 @@ public class Member implements Serializable {
   @JoinColumn(name = "church_id", nullable = false)
   private Church church;
 
+  @JsonManagedReference
   @OneToMany(
           cascade = CascadeType.ALL,
           mappedBy = "member")
@@ -114,6 +117,10 @@ public class Member implements Serializable {
 
   public void setChurch(Church church) {
     this.church = church;
+  }
+
+  public Set<Offering> getOfferings() {
+    return offerings;
   }
 
   @Override

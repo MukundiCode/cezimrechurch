@@ -1,5 +1,7 @@
 package com.christembassy.zimre.portal.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -29,7 +31,7 @@ public class Offering implements Serializable {
   @Column(nullable = false)
   private Currency currency;
 
-  @JsonProperty
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "member_id")
   private Member member;
