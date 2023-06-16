@@ -1,6 +1,7 @@
 package com.christembassy.zimre.portal.config;
 
 import com.christembassy.zimre.portal.domain.Church;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -10,6 +11,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
@@ -48,7 +50,7 @@ public class JPAConfig {
 
   @Bean
   @Profile("!test")
-  public LocalContainerEntityManagerFactoryBean getEntityManagerFactoryBean() {
+  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
     factoryBean.setDataSource(getDataSource());
     factoryBean.setPackagesToScan("com.christembassy.zimre.portal.domain");
@@ -114,7 +116,7 @@ public class JPAConfig {
   @Profile("!test")
   public PlatformTransactionManager transactionManager() {
     JpaTransactionManager transactionManager = new JpaTransactionManager();
-    transactionManager.setEntityManagerFactory(getEntityManagerFactoryBean().getObject());
+    transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
     return transactionManager;
   }
 

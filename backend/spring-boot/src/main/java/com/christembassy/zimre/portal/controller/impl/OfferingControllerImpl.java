@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("offering")
+@RequestMapping("api/offering")
 public class OfferingControllerImpl implements OfferingController {
 
   @Autowired

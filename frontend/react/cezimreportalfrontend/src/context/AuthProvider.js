@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
             username: username,
             password: password,
         };
-        const response = await fetch('http://127.0.0.1:8000/auth/login/', {
+        const response = await fetch('http://localhost:8080/api/auth/signin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
         let data = await response.json();
 
         if (data) {
+            console.log(data)
             localStorage.setItem('authTokens', JSON.stringify(data));
             setAuthTokens(data)
             setUser(jwtDecode(data.access))
