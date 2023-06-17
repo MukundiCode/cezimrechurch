@@ -4,9 +4,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 import FormField from "./FormField";
-import AuthContext from "../context/AuthProvider";
-import GenerictPost from "./usePost";
-import useFetch from "./useFetch";
+import axios from "axios";
+
 
 const AddOffering = () => {
   const [member, setMember] = useState('');
@@ -14,39 +13,34 @@ const AddOffering = () => {
   const [amount, setAmount] = useState('');
   const [currency, setCurrency] = useState('');
   const [date, setDate] = useState(new Date());
-  const history = useHistory();
-  const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = useState(false);
-  const { authTokens, logoutUser } = useContext(AuthContext);
   let [response, setResponse] = useState()
 
   const nameMap = new Map();
   const membersAray = [];
   const currencies = [{ label: "USD", value: "USD" }, { label: "ZWL", value: "ZWL" }, { label: "ZAR", value: "ZAR" }];
 
-  fetch('http://127.0.0.1:8000/members/', {
+  fetch('http://localhost:3000/api/member/all', {
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + String(authTokens.access)
     }
   })
     .then(res => res.json())
     .then(data => data.forEach(element => {
       nameMap.set(element.name, element.id);
-      membersAray.push({ label: element.name, value: element.id });
+      membersAray.push({ label: element.name, value: element });
     }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSuccessfullySubmitted(true)
-    const offering = {
-      member: member,
-      offeringType: offeringType,
-      amount: amount,
-      currency: currency,
-      date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()
-    };
 
-    response =  setResponse(await GenerictPost('http://127.0.0.1:8000/members/addOffering', offering, authTokens))
+    response = setResponse(await axios
+      .post("http://localhost:3000/api/offering/new", {
+        member, offeringType, amount, currency, date
+      })
+      .then((response) => {
+        console.log(response)
+        return response;
+      }))
 
   }
 
@@ -92,9 +86,9 @@ const AddOffering = () => {
           <button type="submit" class="btn btn-primary mt-3">Submit</button>
           {
             response != null && (
-            (response.status == 200 && (<div className="success">The form was submitted successfully</div>)) || 
-            (response.status == 400 && (<div className="success">There was an error in submitting the form</div>)) || 
-            (response.status == 401 && (<div className="success">You are not authorized to add a member, please log in</div>))
+              (response.status == 200 && (<div className="success">The form was submitted successfully</div>)) ||
+              (response.status == 400 && (<div className="success">There was an error in submitting the form</div>)) ||
+              (response.status == 401 && (<div className="success">You are not authorized to add a member, please log in</div>))
             )
           }
         </form>

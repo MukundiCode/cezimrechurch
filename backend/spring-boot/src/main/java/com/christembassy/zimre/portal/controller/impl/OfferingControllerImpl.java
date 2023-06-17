@@ -4,11 +4,13 @@ import com.christembassy.zimre.portal.controller.OfferingController;
 import com.christembassy.zimre.portal.domain.Offering;
 import com.christembassy.zimre.portal.service.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/offering")
 public class OfferingControllerImpl implements OfferingController {
@@ -18,6 +20,7 @@ public class OfferingControllerImpl implements OfferingController {
 
   @Override
   @PostMapping("/new")
+  @PreAuthorize("hasRole('ADMIN')")
   public Offering newOffering(@RequestBody Offering newOffering) {
     System.out.println("newOffering = " + newOffering);
     return offeringService.addNew(newOffering);
@@ -25,12 +28,14 @@ public class OfferingControllerImpl implements OfferingController {
 
   @Override
   @GetMapping("/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
   public Offering findById(@PathVariable Long id) {
     return offeringService.findById(id);
   }
 
   @Override
   @GetMapping("/all")
+  @PreAuthorize("hasRole('ADMIN')")
   public List<Offering> findAll() {
     return new ArrayList<>(offeringService.findAll());
   }

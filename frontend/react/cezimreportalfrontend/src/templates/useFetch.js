@@ -6,19 +6,16 @@ const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
-  const { authTokens, logoutUser } = useContext(AuthContext);
 
   useEffect(() => {
     const abortCont = new AbortController();
-
-    console.log(axios.get('http://localhost:8080/api/member/all'))
+    
     setTimeout(() => {
       fetch(url,
         {
           signal: abortCont.signal,
           headers: {
             "Content-Type": "application/json",
-            // "Authorization": "Bearer " + String(authTokens.access)
           },
         })
         .then(res => {

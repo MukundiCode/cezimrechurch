@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import AuthContext, { AuthProvider } from "../context/AuthProvider";
+import { useContext, useState } from "react";
 
 const Navbar = () => {
-  return (
+  let { getCurrentUser } = useContext(AuthContext)
+  const user = getCurrentUser()
 
+  return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" >CE Zimre Portal</a>
@@ -26,6 +30,14 @@ const Navbar = () => {
             <li class="nav-item">
               <Link to="/addOffering" class="nav-link">Add Offering</Link>
             </li>
+
+            {user != null && <li class="nav-item">
+              <Link to="/" class="nav-link">Logout</Link>
+            </li>}
+            {user == null && <li class="nav-item">
+              <Link to="/login" class="nav-link">Login</Link>
+            </li>}
+
           </ul>
         </div>
       </div>

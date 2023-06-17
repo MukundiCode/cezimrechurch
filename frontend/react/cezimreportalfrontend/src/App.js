@@ -38,9 +38,9 @@ function App() {
                 </PrivateRoute>
               </Route>
               <Route exact path="/members">
-                {/* <PrivateRoute> */}
+                <PrivateRoute>
                   <MembersList />
-                {/* </PrivateRoute> */}
+                </PrivateRoute>
               </Route>
               <Route exact path="/offerings">
                 <PrivateRoute>
@@ -63,11 +63,11 @@ function App() {
               <Route exact path="/login">
                 <Login />
               </Route>
-              <Route exact path="/addChurch">
+              {/* <Route exact path="/addChurch">
                 <PrivateRoute>
                   <AddChurch />
                 </PrivateRoute>
-              </Route>
+              </Route> */}
             </Switch>
           </div>
         </div>

@@ -20,12 +20,15 @@ public class MemberControllerImpl implements MemberController {
 
   @Override
   @PostMapping("/register")
-  public Member newMember(Member newMember) {
+  @PreAuthorize("hasRole('ADMIN')")
+  public Member newMember(@RequestBody Member newMember) {
+    System.out.println("newMember = " + newMember);
     return memberService.register(newMember);
   }
 
   @Override
   @GetMapping("/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
   public Member findById(@PathVariable Long id) {
     return memberService.findById(id);
   }

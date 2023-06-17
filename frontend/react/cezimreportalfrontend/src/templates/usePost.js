@@ -1,17 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
+import axios from 'axios';
 
-// const GenerictPost = async (url, body, authTokens) => {
-async function GenerictPost(url, body, authTokens) {
-  let response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + String(authTokens.access)
-    },
-    body: JSON.stringify(body)
-  })
-  return response;
+async function GenerictPost(url, body) {
+
+  return axios
+            .post(url, {
+                data: body
+            })
+            .then((response) => {
+                return response.data;
+            })
 }
 
 export default GenerictPost;

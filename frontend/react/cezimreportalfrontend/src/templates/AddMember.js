@@ -1,12 +1,10 @@
 import { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import FormField from "./FormField";
-import AuthContext from "../context/AuthProvider";
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-import GenerictPost from "./usePost";
+import axios from "axios";
 
 const AddMember = () => {
   const [name, setName] = useState('');
@@ -15,22 +13,19 @@ const AddMember = () => {
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [birthday, setBirthday] = useState(new Date());
-  const history = useHistory();
-  const { authTokens, logoutUser } = useContext(AuthContext);
   let [response, setResponse] = useState()
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const member = {
-      name: name,
-      surname: surname,
-      email: email,
-      address: address,
-      phoneNumber: phoneNumber,
-      birthday: birthday.getFullYear() + "-" + birthday.getMonth() + "-" + birthday.getDate()
-    };
-    response = setResponse(await GenerictPost('http://127.0.0.1:8000/members/addMember', member, authTokens))
+    response = setResponse(await axios
+    .post("http://localhost:3000/api/member/register", {
+        name, surname, email, address, birthday
+    })
+    .then((response) => {
+      console.log(response)
+        return response;
+    }))
   }
 
   const formFileds = [
