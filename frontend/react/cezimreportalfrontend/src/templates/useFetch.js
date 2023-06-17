@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
+import axios from 'axios';
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
@@ -10,13 +11,14 @@ const useFetch = (url) => {
   useEffect(() => {
     const abortCont = new AbortController();
 
+    console.log(axios.get('http://localhost:8080/api/member/all'))
     setTimeout(() => {
       fetch(url,
         {
           signal: abortCont.signal,
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + String(authTokens.access)
+            // "Authorization": "Bearer " + String(authTokens.access)
           },
         })
         .then(res => {

@@ -3,7 +3,7 @@ import useFetch from "./useFetch";
 
 const MembersList = () => {
   // const { error, isPending, data: names } = useFetch('http://127.0.0.1:8000/members/', 'GET')
-  const { error, isPending, data: names } = useFetch('http://localhost:8080/api/member/all', 'GET')
+  const { error, isPending, data: names } = useFetch('http://localhost:3000/api/member/all', 'GET')
   
 
   return (

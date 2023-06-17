@@ -38,9 +38,9 @@ function App() {
                 </PrivateRoute>
               </Route>
               <Route exact path="/members">
-                <PrivateRoute>
+                {/* <PrivateRoute> */}
                   <MembersList />
-                </PrivateRoute>
+                {/* </PrivateRoute> */}
               </Route>
               <Route exact path="/offerings">
                 <PrivateRoute>
