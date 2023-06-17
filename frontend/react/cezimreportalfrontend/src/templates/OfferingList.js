@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 const OfferingList = ({ offerings }) => {
-    console.log(offerings)
 
     return (
         <div >

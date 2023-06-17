@@ -16,6 +16,7 @@ import AddChurch from './templates/AddChurch';
 import PrivateRoute from './templates/utils/PrivateRoute';
 import { AuthProvider } from './context/AuthProvider';
 import AddMember from './templates/AddMember';
+import Member from './templates/Member';
 
 
 function App() {
@@ -40,6 +41,11 @@ function App() {
               <Route exact path="/members">
                 <PrivateRoute>
                   <MembersList />
+                </PrivateRoute>
+              </Route>
+              <Route exact path="/member/:id">
+                <PrivateRoute>
+                  <Member />
                 </PrivateRoute>
               </Route>
               <Route exact path="/offerings">

@@ -38,7 +38,6 @@ const AddOffering = () => {
         member, offeringType, amount, currency, date
       })
       .then((response) => {
-        console.log(response)
         return response;
       }))
 

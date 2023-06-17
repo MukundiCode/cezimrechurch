@@ -23,7 +23,6 @@ const AddMember = () => {
         name, surname, email, address, birthday
     })
     .then((response) => {
-      console.log(response)
         return response;
     }))
   }
