@@ -1,8 +1,6 @@
 package com.christembassy.zimre.portal.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,7 +21,8 @@ public class Offering implements Serializable {
   private BigDecimal amount;
 
   @Column(nullable = false)
-  private String offeringType;
+  @Enumerated(EnumType.STRING)
+  private EPartnership offeringType;
 
   @Column(nullable = false)
   private LocalDate date;
@@ -55,11 +54,11 @@ public class Offering implements Serializable {
     this.amount = amount;
   }
 
-  public String getOfferingType() {
+  public EPartnership getOfferingType() {
     return offeringType;
   }
 
-  public void setOfferingType(String offeringType) {
+  public void setOfferingType(EPartnership offeringType) {
     this.offeringType = offeringType;
   }
 

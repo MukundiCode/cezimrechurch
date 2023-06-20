@@ -65,8 +65,8 @@ public class JPAConfig {
     properties.setProperty("hibernate.show_sql", "true");
     properties.setProperty("hibernate.format_sql", "true");
     properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
-//    properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-    properties.setProperty("hibernate.hbm2ddl.auto", "update");
+    properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+//    properties.setProperty("hibernate.hbm2ddl.auto", "update");
     return properties;
   }
 
@@ -86,7 +86,7 @@ public class JPAConfig {
   public LocalContainerEntityManagerFactoryBean getTestEntityManagerFactoryBean() {
     LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
     factoryBean.setDataSource(getTestDataSource());
-    factoryBean.setPackagesToScan("com.psybergate.agile.project.finance.domain");
+    factoryBean.setPackagesToScan("com.christembassy.zimre.portal.domain");
     JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     factoryBean.setJpaVendorAdapter(vendorAdapter);
     factoryBean.setJpaProperties(testHibernateProperties());

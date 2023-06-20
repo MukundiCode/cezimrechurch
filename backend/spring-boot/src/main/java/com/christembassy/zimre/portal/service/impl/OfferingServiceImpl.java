@@ -1,6 +1,7 @@
 package com.christembassy.zimre.portal.service.impl;
 
 import com.christembassy.zimre.portal.domain.Church;
+import com.christembassy.zimre.portal.domain.EPartnership;
 import com.christembassy.zimre.portal.domain.Member;
 import com.christembassy.zimre.portal.domain.Offering;
 import com.christembassy.zimre.portal.repository.OfferingRepository;
@@ -11,6 +12,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -45,5 +49,10 @@ public class OfferingServiceImpl implements OfferingService {
   @Override
   public Set<Offering> findByChurch(Church church) {
     return null;
+  }
+
+  @Override
+  public List<EPartnership> getPartnershipTypes() {
+    return new ArrayList<>(Arrays.asList(EPartnership.values()));
   }
 }

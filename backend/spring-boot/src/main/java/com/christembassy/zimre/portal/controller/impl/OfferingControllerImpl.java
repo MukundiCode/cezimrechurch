@@ -1,6 +1,7 @@
 package com.christembassy.zimre.portal.controller.impl;
 
 import com.christembassy.zimre.portal.controller.OfferingController;
+import com.christembassy.zimre.portal.domain.EPartnership;
 import com.christembassy.zimre.portal.domain.Offering;
 import com.christembassy.zimre.portal.service.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,10 @@ public class OfferingControllerImpl implements OfferingController {
   @PreAuthorize("hasRole('ADMIN')")
   public List<Offering> findAll() {
     return new ArrayList<>(offeringService.findAll());
+  }
+
+  @GetMapping("/partnershipTypes")
+  public List<EPartnership> getPartnerships(){
+    return offeringService.getPartnershipTypes();
   }
 }

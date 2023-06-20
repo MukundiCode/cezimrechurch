@@ -1,0 +1,1 @@
+insert into church (id, zone, subgroup, location) values (1, 'SA Zone 5', 'Ruwa', 'Zimre') on conflict (id) do nothing;
