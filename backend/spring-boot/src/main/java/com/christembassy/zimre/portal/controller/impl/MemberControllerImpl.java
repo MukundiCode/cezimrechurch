@@ -39,4 +39,12 @@ public class MemberControllerImpl implements MemberController {
   public List<Member> all() {
     return new ArrayList<>(memberService.findAll());
   }
+
+  @GetMapping("/getMembersOrderedByPartnership")
+//  @PreAuthorize("hasRole('ADMIN')")
+  public List<Member> getMembersOrderedByPartnership() {
+    List<Member> membersSortedByPartnershipAmount = memberService.getMembersSortedByPartnershipAmount();
+    System.out.println("membersSortedByPartnershipAmount = " + membersSortedByPartnershipAmount);
+    return membersSortedByPartnershipAmount;
+  }
 }

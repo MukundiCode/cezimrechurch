@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,5 +45,11 @@ public class OfferingControllerImpl implements OfferingController {
   @GetMapping("/partnershipTypes")
   public List<EPartnership> getPartnerships(){
     return offeringService.getPartnershipTypes();
+  }
+
+  @GetMapping("/getTotalPartnership")
+//  @PreAuthorize("hasRole('ADMIN')")
+  public BigDecimal getTotalPartnership(){
+    return offeringService.getTotalPartnership();
   }
 }

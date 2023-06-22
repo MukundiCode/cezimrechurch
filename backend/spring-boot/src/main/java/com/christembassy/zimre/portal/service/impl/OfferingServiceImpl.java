@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,5 +55,14 @@ public class OfferingServiceImpl implements OfferingService {
   @Override
   public List<EPartnership> getPartnershipTypes() {
     return new ArrayList<>(Arrays.asList(EPartnership.values()));
+  }
+
+  @Override
+  public BigDecimal getTotalPartnership() {
+    return offeringRepository
+            .findAll()
+            .stream()
+            .map(Offering::getAmount)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
 }
