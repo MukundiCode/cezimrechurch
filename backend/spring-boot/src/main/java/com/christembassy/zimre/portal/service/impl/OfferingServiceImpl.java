@@ -13,10 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @EnableTransactionManagement
@@ -64,5 +62,35 @@ public class OfferingServiceImpl implements OfferingService {
             .stream()
             .map(Offering::getAmount)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
+  }
+
+  @Override
+  public List<OfferingStatisticsDTO> getOfferingStatistics() {
+    return buildOfferingStatisticsDTO((new ArrayList<>(offeringRepository.findAll())));
+  }
+
+  @Override
+  public List<MonthlyOfferingStatisticsDTO> getOfferingMonthlyStatistics() {
+    return offeringRepository.findAll()
+            .stream()
+            .collect(Collectors.groupingBy(offering -> offering.getDate().getMonthValue()))
+            .entrySet()
+            .stream()
+            .map(entry -> new MonthlyOfferingStatisticsDTO(entry.getKey(),
+                    buildOfferingStatisticsDTO(entry.getValue())))
+            .collect(Collectors.toList());
+  }
+
+  private List<OfferingStatisticsDTO> buildOfferingStatisticsDTO(List<Offering> offerings){
+    return offerings.stream()
+            .collect(Collectors.groupingBy(Offering::getOfferingType))
+            .entrySet()
+            .stream()
+            .map(entry -> new OfferingStatisticsDTO(entry.getKey(), entry
+                    .getValue()
+                    .stream()
+                    .map(Offering::getAmount)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add)))
+            .collect(Collectors.toList());
   }
 }

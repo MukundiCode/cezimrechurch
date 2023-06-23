@@ -40,6 +40,11 @@ public class MemberControllerImpl implements MemberController {
     return new ArrayList<>(memberService.findAll());
   }
 
+  @GetMapping("/total")
+  public Integer getTotalMembers(){
+    return memberService.findAll().size();
+  }
+
   @GetMapping("/getMembersOrderedByPartnership")
 //  @PreAuthorize("hasRole('ADMIN')")
   public List<Member> getMembersOrderedByPartnership() {
