@@ -59,6 +59,7 @@ public class MemberServiceImpl implements MemberService {
                             .map(Offering::getAmount)
                             .reduce(BigDecimal.ZERO, BigDecimal::add)))
             .sorted(Collections.reverseOrder())
+            .limit(5)
             .collect(Collectors.toList());
   }
 }

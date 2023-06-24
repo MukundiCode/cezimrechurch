@@ -12,9 +12,9 @@ const NameList = ({ names: members }) => {
                     <th scope="col">Phone Number</th>
                 </thead>
                 <tbody>
-                    {members.map(member => (
+                    {members.map((member, index) => (
                         <tr>
-                            <th scope="row"> {member.id} </th>
+                            <th scope="row"> {index + 1} </th>
                             <td>{member.name}</td>
                             <td>{member.surname}</td>
                             <td>{member.phoneNumber}</td>

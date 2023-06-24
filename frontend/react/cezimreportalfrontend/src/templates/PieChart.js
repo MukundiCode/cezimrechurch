@@ -10,20 +10,22 @@ const PieChart = () => {
     };
 
     return (
-        <div>{stats &&
-            <Chart
-                chartType="PieChart"
-                data={[
-                    ["Category", "Amount"]
-                ].concat(stats.map(v => {
+        <div class="card m-3">
+            <div class="card-body">{stats &&
+                <Chart
+                    chartType="PieChart"
+                    data={[
+                        ["Category", "Amount"]
+                    ].concat(stats.map(v => {
                         return [v.partnershipType, v.amount]
                     }))
-                }
-                options={options}
-                width={"100%"}
-                height={"400px"}
-            />
-        }
+                    }
+                    options={options}
+                    width={"100%"}
+                    height={"270px"}
+                />
+            }
+            </div>
         </div>
     )
 

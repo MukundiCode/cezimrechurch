@@ -17,6 +17,7 @@ const AddOffering = () => {
 
   const nameMap = new Map();
   const membersAray = [];
+  const offeringTypes = []
   const currencies = [{ label: "USD", value: "USD" }, { label: "ZWL", value: "ZWL" }, { label: "ZAR", value: "ZAR" }];
 
   fetch('http://localhost:3000/api/member/all', {
@@ -28,6 +29,16 @@ const AddOffering = () => {
     .then(data => data.forEach(element => {
       nameMap.set(element.name, element.id);
       membersAray.push({ label: element.name, value: element });
+    }));
+
+  fetch('http://localhost:3000/api/offering/partnershipTypes', {
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+    .then(res => res.json())
+    .then(data => data.forEach(element => {
+      offeringTypes.push({label: element, value: element})
     }));
 
   const handleSubmit = async (e) => {
@@ -44,7 +55,6 @@ const AddOffering = () => {
   }
 
   const formFileds = [
-    { value: offeringType, onChange: setOfferingType, id: "inputOfferingType", placeholder: "Offering Type" },
     { value: amount, onChange: setAmount, id: "inputAmount", placeholder: "Amount" }
   ]
 
@@ -58,6 +68,14 @@ const AddOffering = () => {
               options={membersAray}
               onChange={(e) => setMember(e.value)}
               placeholder="Member"
+            />
+          </div>
+
+          <div class="form-group mt-3">
+            <Select
+              options={offeringTypes}
+              onChange={(e) => setOfferingType(e.value)}
+              placeholder="Partnership Category"
             />
           </div>
 
