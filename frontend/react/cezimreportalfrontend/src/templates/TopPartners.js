@@ -1,6 +1,8 @@
+import useFetch from "./useFetch";
+
 const TopPartners = () => {
 
-    const topPartners = [{id: 1 } , {id: 1 }, {id: 1} ,{id: 1}, {id: 1}]
+    const { error, isPending, data: topPartners } = useFetch('http://localhost:3000/api/member/getTopFivePartners')
 
     return (
         <div >
@@ -12,12 +14,12 @@ const TopPartners = () => {
                     <th scope= "col">Amount</th>
                 </thead>
                 <tbody>
-                {topPartners.map(partner => (
+                {topPartners && topPartners.map(partner => (
                     <tr>
                         <th scope = "row"> 1 </th>
-                        <td>Name</td>
-                        <td>Surname</td>
-                        <td>Amount</td>
+                        <td>{ partner.name }</td>
+                        <td>{ partner.surname }</td>
+                        <td>{ partner.totalPartnership }</td>
                     </tr>
                 ))}
                 </tbody>

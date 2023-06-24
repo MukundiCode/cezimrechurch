@@ -26,7 +26,7 @@ public class OfferingServiceImpl implements OfferingService {
   @Override
   @Transactional
   public Offering addNew(Offering offering) {
-    offering.setDate(LocalDate.now());
+//    offering.setDate(LocalDate.now());
     return offeringRepository.save(offering);
   }
 

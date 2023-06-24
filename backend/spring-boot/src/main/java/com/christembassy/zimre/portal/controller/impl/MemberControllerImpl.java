@@ -3,6 +3,7 @@ package com.christembassy.zimre.portal.controller.impl;
 import com.christembassy.zimre.portal.controller.MemberController;
 import com.christembassy.zimre.portal.domain.Member;
 import com.christembassy.zimre.portal.service.MemberService;
+import com.christembassy.zimre.portal.service.impl.TopPartnerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -45,11 +46,9 @@ public class MemberControllerImpl implements MemberController {
     return memberService.findAll().size();
   }
 
-  @GetMapping("/getMembersOrderedByPartnership")
+  @GetMapping("/getTopFivePartners")
 //  @PreAuthorize("hasRole('ADMIN')")
-  public List<Member> getMembersOrderedByPartnership() {
-    List<Member> membersSortedByPartnershipAmount = memberService.getMembersSortedByPartnershipAmount();
-    System.out.println("membersSortedByPartnershipAmount = " + membersSortedByPartnershipAmount);
-    return membersSortedByPartnershipAmount;
+  public List<TopPartnerDTO> getTopFivePartners() {
+    return memberService.getTopFivePartners();
   }
 }

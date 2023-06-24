@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -47,21 +48,17 @@ public class MemberServiceImpl implements MemberService {
   }
 
   @Override
-  public List<Member> getMembersSortedByPartnershipAmount() {
+  public List<TopPartnerDTO> getTopFivePartners() {
     return memberRepository
             .findAll()
             .stream()
-            .sorted((o1, o2) -> {
-              BigDecimal total1 = o1.getOfferings()
-                      .stream()
-                      .map(Offering::getAmount)
-                      .reduce(BigDecimal.ZERO, BigDecimal::add);
-              BigDecimal total2 = o2.getOfferings()
-                      .stream()
-                      .map(Offering::getAmount)
-                      .reduce(BigDecimal.ZERO, BigDecimal::add);
-              return total2.compareTo(total1);
-            })
+            .map((member) -> new TopPartnerDTO(member.getName(),
+                    member.getSurname(),
+                    member.getOfferings()
+                            .stream()
+                            .map(Offering::getAmount)
+                            .reduce(BigDecimal.ZERO, BigDecimal::add)))
+            .sorted(Collections.reverseOrder())
             .collect(Collectors.toList());
   }
 }
