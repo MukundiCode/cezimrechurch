@@ -53,21 +53,23 @@ const BarChart = () => {
 
   const options = {
     chart: {
-      title: "Box Office Earnings in First Two Weeks of Opening",
-      subtitle: "in millions of dollars (USD)",
+      title: "Monthly partnership statistics",
+      subtitle: "in dollars (USD)",
     },
   };
 
   return (
-    <div>{dataReady &&
-      <Chart
-        chartType="Line"
-        width="100%"
-        height="400px"
-        data={lineData}
-        options={options}
-      />
-    }</div>
+    <div class="card m-3">
+      <div class=" card-body" >{dataReady &&
+        <Chart
+          chartType="Line"
+          width="100%"
+          height="400px"
+          data={lineData}
+          options={options}
+        />
+      }</div>
+    </div>
   );
 
 }
