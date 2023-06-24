@@ -2,7 +2,7 @@ import OfferingList from "./OfferingList";
 import useFetch from "./useFetch";
 
 const Offerings = () => {
-  const { error, isPending, data: offerings } = useFetch('http://127.0.0.1:8000/members/getOfferings')
+  const { error, isPending, data: offerings } = useFetch('http://localhost:3000/api/offering/all')
 
   return (
     <div className="home">

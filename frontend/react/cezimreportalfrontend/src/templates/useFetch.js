@@ -1,22 +1,21 @@
 import { useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
+import axios from 'axios';
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
-  const { authTokens, logoutUser } = useContext(AuthContext);
 
   useEffect(() => {
     const abortCont = new AbortController();
-
+    
     setTimeout(() => {
       fetch(url,
         {
           signal: abortCont.signal,
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + String(authTokens.access)
           },
         })
         .then(res => {
