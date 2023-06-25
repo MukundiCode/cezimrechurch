@@ -1,12 +1,15 @@
 package com.christembassy.zimre.portal.controller.impl;
 
-import com.christembassy.zimre.portal.controller.MemberController;
 import com.christembassy.zimre.portal.domain.Member;
+import com.christembassy.zimre.portal.exception.MemberNotFoundException;
 import com.christembassy.zimre.portal.service.MemberService;
-import com.christembassy.zimre.portal.service.impl.TopPartnerDTO;
+import com.christembassy.zimre.portal.dto.TopPartnerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,41 +17,47 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/member")
-public class MemberControllerImpl implements MemberController {
+public class MemberControllerImpl {
 
   @Autowired
   private MemberService memberService;
 
-  @Override
   @PostMapping("/register")
   @PreAuthorize("hasRole('ADMIN')")
-  public Member newMember(@RequestBody Member newMember) {
-    System.out.println("newMember = " + newMember);
-    return memberService.register(newMember);
+  public ResponseEntity<Member> newMember(@RequestBody Member newMember) {
+    return ResponseEntity
+            .ok()
+            .body(memberService.register(newMember));
   }
 
-  @Override
   @GetMapping("/{id}")
   @PreAuthorize("hasRole('ADMIN')")
-  public Member findById(@PathVariable Long id) {
-    return memberService.findById(id);
+  public ResponseEntity<Member> findById(@PathVariable Long id) {
+    return ResponseEntity
+            .ok()
+            .body(memberService.findById(id));
   }
 
-  @Override
   @GetMapping("/all")
   @PreAuthorize("hasRole('ADMIN')")
-  public List<Member> all() {
-    return new ArrayList<>(memberService.findAll());
+  public ResponseEntity<List<Member>> all() {
+    return ResponseEntity
+            .ok()
+            .body(new ArrayList<>(memberService.findAll()));
   }
 
   @GetMapping("/total")
-  public Integer getTotalMembers(){
-    return memberService.findAll().size();
+  public ResponseEntity<Integer> getTotalMembers(){
+    return ResponseEntity
+            .ok()
+            .body(memberService.findAll().size());
   }
 
   @GetMapping("/getTopFivePartners")
-//  @PreAuthorize("hasRole('ADMIN')")
-  public List<TopPartnerDTO> getTopFivePartners() {
-    return memberService.getTopFivePartners();
+  @PreAuthorize("hasRole('ADMIN')")
+  public ResponseEntity<List<TopPartnerDTO>> getTopFivePartners() {
+    return ResponseEntity
+            .ok()
+            .body(memberService.getTopFivePartners());
   }
 }

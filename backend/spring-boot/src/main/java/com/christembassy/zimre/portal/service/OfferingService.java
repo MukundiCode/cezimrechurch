@@ -4,8 +4,8 @@ import com.christembassy.zimre.portal.domain.Church;
 import com.christembassy.zimre.portal.domain.EPartnership;
 import com.christembassy.zimre.portal.domain.Member;
 import com.christembassy.zimre.portal.domain.Offering;
-import com.christembassy.zimre.portal.service.impl.MonthlyOfferingStatisticsDTO;
-import com.christembassy.zimre.portal.service.impl.OfferingStatisticsDTO;
+import com.christembassy.zimre.portal.dto.OfferingStatisticsByMonthDTO;
+import com.christembassy.zimre.portal.dto.OfferingStatisticsByPartnershipTypeDTO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,8 +27,8 @@ public interface OfferingService {
 
   BigDecimal getTotalPartnership();
 
-  List<OfferingStatisticsDTO> getOfferingStatistics();
+  List<OfferingStatisticsByPartnershipTypeDTO> getOfferingStatistics();
 
-  List<MonthlyOfferingStatisticsDTO> getOfferingMonthlyStatistics();
+  List<OfferingStatisticsByMonthDTO> getOfferingMonthlyStatistics();
 
 }

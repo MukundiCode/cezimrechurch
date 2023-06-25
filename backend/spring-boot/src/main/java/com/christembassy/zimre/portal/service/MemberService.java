@@ -1,7 +1,7 @@
 package com.christembassy.zimre.portal.service;
 
 import com.christembassy.zimre.portal.domain.Member;
-import com.christembassy.zimre.portal.service.impl.TopPartnerDTO;
+import com.christembassy.zimre.portal.dto.TopPartnerDTO;
 
 import java.util.List;
 import java.util.Set;

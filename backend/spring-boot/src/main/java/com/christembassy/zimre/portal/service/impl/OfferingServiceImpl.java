@@ -4,6 +4,9 @@ import com.christembassy.zimre.portal.domain.Church;
 import com.christembassy.zimre.portal.domain.EPartnership;
 import com.christembassy.zimre.portal.domain.Member;
 import com.christembassy.zimre.portal.domain.Offering;
+import com.christembassy.zimre.portal.dto.OfferingStatisticsByMonthDTO;
+import com.christembassy.zimre.portal.dto.OfferingStatisticsByPartnershipTypeDTO;
+import com.christembassy.zimre.portal.exception.MemberNotFoundException;
 import com.christembassy.zimre.portal.repository.OfferingRepository;
 import com.christembassy.zimre.portal.service.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,7 +28,6 @@ public class OfferingServiceImpl implements OfferingService {
   @Override
   @Transactional
   public Offering addNew(Offering offering) {
-//    offering.setDate(LocalDate.now());
     return offeringRepository.save(offering);
   }
 
@@ -65,28 +66,28 @@ public class OfferingServiceImpl implements OfferingService {
   }
 
   @Override
-  public List<OfferingStatisticsDTO> getOfferingStatistics() {
-    return buildOfferingStatisticsDTO((new ArrayList<>(offeringRepository.findAll())));
+  public List<OfferingStatisticsByPartnershipTypeDTO> getOfferingStatistics() {
+    return buildOfferingStatisticsDTO(new ArrayList<>(offeringRepository.findAll()));
   }
 
   @Override
-  public List<MonthlyOfferingStatisticsDTO> getOfferingMonthlyStatistics() {
+  public List<OfferingStatisticsByMonthDTO> getOfferingMonthlyStatistics() {
     return offeringRepository.findAll()
             .stream()
             .collect(Collectors.groupingBy(offering -> offering.getDate().getMonthValue()))
             .entrySet()
             .stream()
-            .map(entry -> new MonthlyOfferingStatisticsDTO(entry.getKey(),
+            .map(entry -> new OfferingStatisticsByMonthDTO(entry.getKey(),
                     buildOfferingStatisticsDTO(entry.getValue())))
             .collect(Collectors.toList());
   }
 
-  private List<OfferingStatisticsDTO> buildOfferingStatisticsDTO(List<Offering> offerings){
+  private List<OfferingStatisticsByPartnershipTypeDTO> buildOfferingStatisticsDTO(List<Offering> offerings){
     return offerings.stream()
             .collect(Collectors.groupingBy(Offering::getOfferingType))
             .entrySet()
             .stream()
-            .map(entry -> new OfferingStatisticsDTO(entry.getKey(), entry
+            .map(entry -> new OfferingStatisticsByPartnershipTypeDTO(entry.getKey(), entry
                     .getValue()
                     .stream()
                     .map(Offering::getAmount)

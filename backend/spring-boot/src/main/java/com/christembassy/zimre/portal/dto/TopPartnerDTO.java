@@ -1,4 +1,7 @@
-package com.christembassy.zimre.portal.service.impl;
+package com.christembassy.zimre.portal.dto;
+
+import com.christembassy.zimre.portal.domain.Member;
+import com.christembassy.zimre.portal.domain.Offering;
 
 import java.math.BigDecimal;
 
@@ -40,6 +43,13 @@ public class TopPartnerDTO implements Comparable {
     this.totalPartnership = totalPartnership;
   }
 
+  public static TopPartnerDTO toDto(Member member) {
+    return new TopPartnerDTO(member.getName(), member.getSurname(),
+            member.getOfferings()
+                    .stream()
+                    .map(Offering::getAmount)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add));
+  }
 
   @Override
   public int compareTo(Object o) {
