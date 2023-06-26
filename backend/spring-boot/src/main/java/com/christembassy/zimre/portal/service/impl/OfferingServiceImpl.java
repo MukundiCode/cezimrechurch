@@ -6,7 +6,7 @@ import com.christembassy.zimre.portal.domain.Member;
 import com.christembassy.zimre.portal.domain.Offering;
 import com.christembassy.zimre.portal.dto.OfferingStatisticsByMonthDTO;
 import com.christembassy.zimre.portal.dto.OfferingStatisticsByPartnershipTypeDTO;
-import com.christembassy.zimre.portal.exception.MemberNotFoundException;
+import com.christembassy.zimre.portal.exception.OfferingException;
 import com.christembassy.zimre.portal.repository.OfferingRepository;
 import com.christembassy.zimre.portal.service.OfferingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +28,27 @@ public class OfferingServiceImpl implements OfferingService {
   @Override
   @Transactional
   public Offering addNew(Offering offering) {
-    return offeringRepository.save(offering);
+    try {
+      return offeringRepository.save(offering);
+    } catch (Exception e) {
+      throw new OfferingException("Could not add offering: " + offering);
+    }
   }
 
   @Override
   public Offering findById(Long id) {
-    return offeringRepository.findById(id);
+    return offeringRepository
+            .findById(id)
+            .orElseThrow(() -> new OfferingException("Could not find offering with id " + id));
   }
 
   @Override
   public Set<Offering> findAll() {
-    return offeringRepository.findAll();
+    try {
+      return offeringRepository.findAll();
+    } catch (Exception e) {
+      throw new OfferingException("Could not fetch all offerings.");
+    }
   }
 
   @Override
@@ -67,7 +77,11 @@ public class OfferingServiceImpl implements OfferingService {
 
   @Override
   public List<OfferingStatisticsByPartnershipTypeDTO> getOfferingStatistics() {
-    return buildOfferingStatisticsDTO(new ArrayList<>(offeringRepository.findAll()));
+    try {
+      return buildOfferingStatisticsDTO(new ArrayList<>(offeringRepository.findAll()));
+    } catch (Exception e) {
+      throw new OfferingException("Could not fetch offering statistics.");
+    }
   }
 
   @Override
@@ -82,7 +96,7 @@ public class OfferingServiceImpl implements OfferingService {
             .collect(Collectors.toList());
   }
 
-  private List<OfferingStatisticsByPartnershipTypeDTO> buildOfferingStatisticsDTO(List<Offering> offerings){
+  private List<OfferingStatisticsByPartnershipTypeDTO> buildOfferingStatisticsDTO(List<Offering> offerings) {
     return offerings.stream()
             .collect(Collectors.groupingBy(Offering::getOfferingType))
             .entrySet()

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Repository
@@ -23,8 +24,8 @@ public class MemberRepositoryImpl implements MemberRepository {
   }
 
   @Override
-  public Member findById(Long id) {
-    return entityManager.find(Member.class, id);
+  public Optional<Member> findById(Long id) {
+    return Optional.ofNullable(entityManager.find(Member.class, id));
   }
 
   @Override

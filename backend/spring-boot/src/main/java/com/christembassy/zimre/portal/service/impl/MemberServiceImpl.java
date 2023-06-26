@@ -3,7 +3,7 @@ package com.christembassy.zimre.portal.service.impl;
 import com.christembassy.zimre.portal.domain.Church;
 import com.christembassy.zimre.portal.domain.Member;
 import com.christembassy.zimre.portal.dto.TopPartnerDTO;
-import com.christembassy.zimre.portal.exception.MemberNotFoundException;
+import com.christembassy.zimre.portal.exception.MemberException;
 import com.christembassy.zimre.portal.repository.MemberRepository;
 import com.christembassy.zimre.portal.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
 
   @Override
   @Transactional
-  public Member register(Member member) {
+  public Member register(@Valid Member member) {
     member.setChurch(this.church);
     return memberRepository.save(member);
   }
@@ -37,13 +38,19 @@ public class MemberServiceImpl implements MemberService {
   @Override
   @Transactional
   public Member findById(Long id) {
-    return memberRepository.findById(id);
+    return memberRepository
+            .findById(id)
+            .orElseThrow(() -> new MemberException("Member with id " + id + " was not found."));
   }
 
   @Override
   @Transactional
   public Set<Member> findAll() {
-    return memberRepository.findAll();
+    try {
+      return memberRepository.findAll();
+    } catch (Exception e) {
+      throw new MemberException("Could not fetch all members.");
+    }
   }
 
   @Override

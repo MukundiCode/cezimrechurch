@@ -1,16 +1,14 @@
 package com.christembassy.zimre.portal.controller.impl;
 
 import com.christembassy.zimre.portal.domain.Member;
-import com.christembassy.zimre.portal.exception.MemberNotFoundException;
 import com.christembassy.zimre.portal.service.MemberService;
 import com.christembassy.zimre.portal.dto.TopPartnerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class MemberControllerImpl {
 
   @PostMapping("/register")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<Member> newMember(@RequestBody Member newMember) {
+  public ResponseEntity<Member> newMember(@RequestBody @Valid Member newMember) {
     return ResponseEntity
             .ok()
             .body(memberService.register(newMember));
