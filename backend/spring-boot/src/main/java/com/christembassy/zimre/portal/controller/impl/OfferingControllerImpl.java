@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class OfferingControllerImpl {
 
   @PostMapping("/new")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<Offering> newOffering(@RequestBody Offering newOffering) {
+  public ResponseEntity<Offering> newOffering(@RequestBody @Valid Offering newOffering) {
     System.out.println("newOffering = " + newOffering);
     return ResponseEntity
             .ok()
