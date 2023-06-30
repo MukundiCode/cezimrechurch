@@ -1,9 +1,15 @@
 package com.christembassy.zimre.portal.domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
+@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 public class Church {
 
@@ -25,51 +31,10 @@ public class Church {
           mappedBy = "church")
   private Set<Member> members;
 
-  public Church() {
-  }
-
   public Church(Long id, String zone, String subgroup, String location) {
     this.id = id;
     this.zone = zone;
     this.subgroup = subgroup;
-    this.location = location;
-  }
-
-  public Church(String zone, String subgroup, String location) {
-    this.zone = zone;
-    this.subgroup = subgroup;
-    this.location = location;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getZone() {
-    return zone;
-  }
-
-  public void setZone(String zone) {
-    this.zone = zone;
-  }
-
-  public String getSubgroup() {
-    return subgroup;
-  }
-
-  public void setSubgroup(String subgroup) {
-    this.subgroup = subgroup;
-  }
-
-  public String getLocation() {
-    return location;
-  }
-
-  public void setLocation(String location) {
     this.location = location;
   }
 
@@ -86,13 +51,4 @@ public class Church {
     return Objects.hash(id);
   }
 
-  @Override
-  public String toString() {
-    return "Church{" +
-            "id=" + id +
-            ", zone='" + zone + '\'' +
-            ", subgroup='" + subgroup + '\'' +
-            ", location='" + location + '\'' +
-            '}';
-  }
 }
