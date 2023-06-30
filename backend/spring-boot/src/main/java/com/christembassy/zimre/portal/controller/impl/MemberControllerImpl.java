@@ -1,21 +1,16 @@
 package com.christembassy.zimre.portal.controller.impl;
 
 import com.christembassy.zimre.portal.domain.Member;
-import com.christembassy.zimre.portal.service.MemberService;
 import com.christembassy.zimre.portal.dto.TopPartnerDTO;
+import com.christembassy.zimre.portal.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

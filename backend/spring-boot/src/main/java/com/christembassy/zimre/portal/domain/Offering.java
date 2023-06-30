@@ -1,6 +1,7 @@
 package com.christembassy.zimre.portal.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
@@ -11,6 +12,11 @@ import java.time.LocalDate;
 import java.util.Currency;
 import java.util.Objects;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 public class Offering implements Serializable {
 
@@ -43,57 +49,6 @@ public class Offering implements Serializable {
   @NotNull(message = "Member can not be empty")
   private Member member;
 
-  public Offering() {
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public BigDecimal getAmount() {
-    return amount;
-  }
-
-  public void setAmount(BigDecimal amount) {
-    this.amount = amount;
-  }
-
-  public EPartnership getOfferingType() {
-    return offeringType;
-  }
-
-  public void setOfferingType(EPartnership offeringType) {
-    this.offeringType = offeringType;
-  }
-
-  public LocalDate getDate() {
-    return date;
-  }
-
-  public void setDate(LocalDate date) {
-    this.date = date;
-  }
-
-  public Currency getCurrency() {
-    return currency;
-  }
-
-  public void setCurrency(Currency currency) {
-    this.currency = currency;
-  }
-
-  public Member getMember() {
-    return member;
-  }
-
-  public void setMember(Member member) {
-    this.member = member;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -107,15 +62,4 @@ public class Offering implements Serializable {
     return Objects.hash(id);
   }
 
-  @Override
-  public String toString() {
-    return "Offering{" +
-            "id=" + id +
-            ", amount=" + amount +
-            ", offeringType='" + offeringType + '\'' +
-            ", date=" + date +
-            ", currency=" + currency +
-            ", member=" + member +
-            '}';
-  }
 }
