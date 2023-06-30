@@ -3,6 +3,8 @@ package com.christembassy.zimre.portal.domain;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -17,15 +19,18 @@ public class Member implements Serializable {
   private Long id;
 
   @Column(nullable = false)
+  @NotEmpty(message = "Name can not be blank")
   private String name;
 
   @Column(nullable = false)
+  @NotEmpty(message = "Surname can not be blank")
   private String surname;
 
   @Column
   private String email;
 
   @Column
+  @NotEmpty(message = "Address can not be empty")
   private String address;
 
   @Column

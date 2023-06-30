@@ -1,15 +1,16 @@
 package com.christembassy.zimre.portal.controller.impl;
 
-import com.christembassy.zimre.portal.controller.OfferingController;
 import com.christembassy.zimre.portal.domain.EPartnership;
 import com.christembassy.zimre.portal.domain.Offering;
 import com.christembassy.zimre.portal.service.OfferingService;
-import com.christembassy.zimre.portal.service.impl.MonthlyOfferingStatisticsDTO;
-import com.christembassy.zimre.portal.service.impl.OfferingStatisticsDTO;
+import com.christembassy.zimre.portal.dto.OfferingStatisticsByMonthDTO;
+import com.christembassy.zimre.portal.dto.OfferingStatisticsByPartnershipTypeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,51 +18,62 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/offering")
-public class OfferingControllerImpl implements OfferingController {
+public class OfferingControllerImpl {
 
   @Autowired
   private OfferingService offeringService;
 
-  @Override
   @PostMapping("/new")
   @PreAuthorize("hasRole('ADMIN')")
-  public Offering newOffering(@RequestBody Offering newOffering) {
+  public ResponseEntity<Offering> newOffering(@RequestBody @Valid Offering newOffering) {
     System.out.println("newOffering = " + newOffering);
-    return offeringService.addNew(newOffering);
+    return ResponseEntity
+            .ok()
+            .body(offeringService.addNew(newOffering));
   }
 
-  @Override
   @GetMapping("/{id}")
   @PreAuthorize("hasRole('ADMIN')")
-  public Offering findById(@PathVariable Long id) {
-    return offeringService.findById(id);
+  public ResponseEntity<Offering> findById(@PathVariable Long id) {
+    return ResponseEntity
+            .ok()
+            .body(offeringService.findById(id));
   }
 
-  @Override
   @GetMapping("/all")
   @PreAuthorize("hasRole('ADMIN')")
-  public List<Offering> findAll() {
-    return new ArrayList<>(offeringService.findAll());
+  public ResponseEntity<List<Offering>> findAll() {
+    return ResponseEntity
+            .ok()
+            .body(new ArrayList<>(offeringService.findAll()));
   }
 
   @GetMapping("/partnershipTypes")
-  public List<EPartnership> getPartnerships(){
-    return offeringService.getPartnershipTypes();
+  public ResponseEntity<List<EPartnership>> getPartnerships(){
+    return ResponseEntity
+            .ok()
+            .body(offeringService.getPartnershipTypes());
   }
 
   @GetMapping("/statistics")
-  public List<OfferingStatisticsDTO> getOfferingStatistics(){
-    return offeringService.getOfferingStatistics();
+  public ResponseEntity<List<OfferingStatisticsByPartnershipTypeDTO>> getOfferingStatistics(){
+    return ResponseEntity
+            .ok()
+            .body(offeringService.getOfferingStatistics());
   }
 
   @GetMapping("/monthlyStatistics")
-  public List<MonthlyOfferingStatisticsDTO> getMonthlyStatistics(){
-    return offeringService.getOfferingMonthlyStatistics();
+  public ResponseEntity<List<OfferingStatisticsByMonthDTO>> getMonthlyStatistics(){
+    return ResponseEntity
+            .ok()
+            .body(offeringService.getOfferingMonthlyStatistics());
   }
 
   @GetMapping("/getTotalPartnership")
-//  @PreAuthorize("hasRole('ADMIN')")
-  public BigDecimal getTotalPartnership(){
-    return offeringService.getTotalPartnership();
+  @PreAuthorize("hasRole('ADMIN')")
+  public ResponseEntity<BigDecimal> getTotalPartnership(){
+    return ResponseEntity
+            .ok()
+            .body(offeringService.getTotalPartnership());
   }
 }

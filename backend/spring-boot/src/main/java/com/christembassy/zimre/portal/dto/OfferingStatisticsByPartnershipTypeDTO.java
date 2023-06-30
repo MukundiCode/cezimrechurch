@@ -1,16 +1,16 @@
-package com.christembassy.zimre.portal.service.impl;
+package com.christembassy.zimre.portal.dto;
 
 import com.christembassy.zimre.portal.domain.EPartnership;
 
 import java.math.BigDecimal;
 
-public class OfferingStatisticsDTO {
+public class OfferingStatisticsByPartnershipTypeDTO {
 
   private EPartnership partnershipType;
 
   private BigDecimal amount;
 
-  public OfferingStatisticsDTO(EPartnership partnershipType, BigDecimal amount) {
+  public OfferingStatisticsByPartnershipTypeDTO(EPartnership partnershipType, BigDecimal amount) {
     this.partnershipType = partnershipType;
     this.amount = amount;
   }

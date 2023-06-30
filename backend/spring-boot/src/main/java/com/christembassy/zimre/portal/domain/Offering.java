@@ -3,6 +3,8 @@ package com.christembassy.zimre.portal.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,21 +20,27 @@ public class Offering implements Serializable {
   private Long id;
 
   @Column(nullable = false)
+  @NotNull
+  @DecimalMin(value = "0.0", message = "Amount can not be less zero or less")
   private BigDecimal amount;
 
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
+  @NotNull(message = "Partnership arm can not be blank")
   private EPartnership offeringType;
 
   @Column(nullable = false)
+  @NotNull(message = "Date can not be empty")
   private LocalDate date;
 
   @Column(nullable = false)
+  @NotNull(message = "Currency can not be empty")
   private Currency currency;
 
   @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "member_id")
+  @NotNull(message = "Member can not be empty")
   private Member member;
 
   public Offering() {
