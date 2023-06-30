@@ -17,6 +17,7 @@ import PrivateRoute from './templates/utils/PrivateRoute';
 import { AuthProvider } from './context/AuthProvider';
 import AddMember from './templates/AddMember';
 import Member from './templates/Member';
+import Logout from './templates/Logout';
 
 
 function App() {
@@ -69,11 +70,9 @@ function App() {
               <Route exact path="/login">
                 <Login />
               </Route>
-              {/* <Route exact path="/addChurch">
-                <PrivateRoute>
-                  <AddChurch />
-                </PrivateRoute>
-              </Route> */}
+              <Route exact path="/logout">
+                <Logout />
+              </Route>
             </Switch>
           </div>
         </div>

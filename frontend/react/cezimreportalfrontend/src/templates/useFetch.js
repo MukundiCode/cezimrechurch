@@ -20,11 +20,16 @@ const useFetch = (url) => {
         })
         .then(res => {
           if (!res.ok) { // error coming back from server
+            console.log(res.status)
+            if (res.status == 401){
+              window.location.replace("/logout");
+            }
             throw Error('could not fetch the data for that resource');
           }
           return res.json();
         })
         .then(data => {
+          console.log("Status is " + data.status)
           setIsPending(false);
           setData(data);
           setError(null);
