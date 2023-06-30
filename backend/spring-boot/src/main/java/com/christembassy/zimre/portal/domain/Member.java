@@ -23,14 +23,14 @@ public class Member implements Serializable {
   private String name;
 
   @Column(nullable = false)
-  @NotEmpty
+  @NotEmpty(message = "Surname can not be blank")
   private String surname;
 
   @Column
   private String email;
 
   @Column
-  @NotEmpty
+  @NotEmpty(message = "Address can not be empty")
   private String address;
 
   @Column
