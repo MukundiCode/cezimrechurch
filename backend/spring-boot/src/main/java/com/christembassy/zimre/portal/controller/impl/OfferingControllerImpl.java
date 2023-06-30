@@ -49,6 +49,7 @@ public class OfferingControllerImpl {
   }
 
   @GetMapping("/partnershipTypes")
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<List<EPartnership>> getPartnerships(){
     return ResponseEntity
             .ok()
@@ -56,6 +57,7 @@ public class OfferingControllerImpl {
   }
 
   @GetMapping("/statistics")
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<List<OfferingStatisticsByPartnershipTypeDTO>> getOfferingStatistics(){
     return ResponseEntity
             .ok()
@@ -63,6 +65,7 @@ public class OfferingControllerImpl {
   }
 
   @GetMapping("/monthlyStatistics")
+  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<List<OfferingStatisticsByMonthDTO>> getMonthlyStatistics(){
     return ResponseEntity
             .ok()
