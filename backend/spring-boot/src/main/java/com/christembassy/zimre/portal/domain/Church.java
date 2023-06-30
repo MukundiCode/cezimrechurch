@@ -26,6 +26,8 @@ public class Church {
   @Column(nullable = false)
   private String location;
 
+  @Getter(AccessLevel.NONE)
+  @Setter(AccessLevel.NONE)
   @OneToMany(
           cascade = CascadeType.ALL,
           mappedBy = "church")
