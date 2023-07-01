@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static com.christembassy.zimre.portal.service.Utils.sumOfferingList;
 
 @Getter
 @Setter
@@ -37,18 +41,10 @@ public class PartnershipStatisticsByMonthDTO {
   }
 
   private static List<BigDecimal> getOfferingTotalsByMonth(Map<Integer, List<Offering>> in) {
-    List<BigDecimal> totals = new ArrayList<>();
-
-    for (int i = 0; i < 12; i++) {
-      if (in.containsKey(i)) {
-        totals.add(in.get(i).stream()
-                .map(Offering::getAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add));
-      } else {
-        totals.add(BigDecimal.ZERO);
-      }
-    }
-    return totals;
+    return IntStream
+            .range(0, 12)
+            .mapToObj(i -> in.containsKey(i) ? sumOfferingList(in.get(i)) : BigDecimal.ZERO)
+            .collect(Collectors.toList());
   }
 
 }
