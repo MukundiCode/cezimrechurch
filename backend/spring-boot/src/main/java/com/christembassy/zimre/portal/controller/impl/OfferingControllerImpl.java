@@ -2,6 +2,7 @@ package com.christembassy.zimre.portal.controller.impl;
 
 import com.christembassy.zimre.portal.domain.EPartnership;
 import com.christembassy.zimre.portal.domain.Offering;
+import com.christembassy.zimre.portal.dto.PartnershipStatisticsByMonthDTO;
 import com.christembassy.zimre.portal.service.OfferingService;
 import com.christembassy.zimre.portal.dto.OfferingStatisticsByMonthDTO;
 import com.christembassy.zimre.portal.dto.OfferingStatisticsByPartnershipTypeDTO;
@@ -78,5 +79,13 @@ public class OfferingControllerImpl {
     return ResponseEntity
             .ok()
             .body(offeringService.getTotalPartnership());
+  }
+
+  @GetMapping("/getPartnershipStatisticsByMonth")
+  @PreAuthorize("hasRole('ADMIN')")
+  public ResponseEntity<List<PartnershipStatisticsByMonthDTO>> getPartnershipStatisticsByMonth(){
+    return ResponseEntity
+            .ok()
+            .body(offeringService.getPartnershipStatisticsByMonth());
   }
 }

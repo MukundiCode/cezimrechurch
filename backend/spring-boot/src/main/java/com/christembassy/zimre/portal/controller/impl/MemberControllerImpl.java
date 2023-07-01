@@ -1,6 +1,7 @@
 package com.christembassy.zimre.portal.controller.impl;
 
 import com.christembassy.zimre.portal.domain.Member;
+import com.christembassy.zimre.portal.dto.PartnershipStatisticsByMonthDTO;
 import com.christembassy.zimre.portal.dto.TopPartnerDTO;
 import com.christembassy.zimre.portal.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;

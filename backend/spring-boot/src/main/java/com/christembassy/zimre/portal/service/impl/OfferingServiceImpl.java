@@ -6,6 +6,7 @@ import com.christembassy.zimre.portal.domain.Member;
 import com.christembassy.zimre.portal.domain.Offering;
 import com.christembassy.zimre.portal.dto.OfferingStatisticsByMonthDTO;
 import com.christembassy.zimre.portal.dto.OfferingStatisticsByPartnershipTypeDTO;
+import com.christembassy.zimre.portal.dto.PartnershipStatisticsByMonthDTO;
 import com.christembassy.zimre.portal.exception.OfferingException;
 import com.christembassy.zimre.portal.repository.OfferingRepository;
 import com.christembassy.zimre.portal.service.OfferingService;
@@ -93,6 +94,17 @@ public class OfferingServiceImpl implements OfferingService {
             .stream()
             .map(entry -> new OfferingStatisticsByMonthDTO(entry.getKey(),
                     buildOfferingStatisticsDTO(entry.getValue())))
+            .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<PartnershipStatisticsByMonthDTO> getPartnershipStatisticsByMonth(){
+    return offeringRepository.findAll()
+            .stream()
+            .collect(Collectors.groupingBy(Offering::getOfferingType))
+            .entrySet()
+            .stream()
+            .map(entry -> PartnershipStatisticsByMonthDTO.toDto(entry.getKey(), entry.getValue()))
             .collect(Collectors.toList());
   }
 

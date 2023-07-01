@@ -27,7 +27,7 @@ const Home = () => {
               <div class="col">
                 <StatsCard header={"Total Members"} url={'http://localhost:3000/api/member/total'}></StatsCard>
               </div>
-              <PieChart></PieChart>
+              <PieChart class="justify-content-center"></PieChart>
             </div>
           </div>
           <div class="col-8">
