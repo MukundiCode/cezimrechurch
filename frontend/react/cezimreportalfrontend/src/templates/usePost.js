@@ -9,6 +9,9 @@ async function GenerictPost(url, body) {
                 data: body
             })
             .then((response) => {
+                if (response.status == 401){
+                    window.location.replace("/logout");
+                }
                 return response.data;
             })
 }

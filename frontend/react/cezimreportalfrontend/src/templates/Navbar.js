@@ -4,7 +4,8 @@ import { useContext, useState } from "react";
 
 const Navbar = () => {
   let { getCurrentUser } = useContext(AuthContext)
-  const user = getCurrentUser()
+  const [user, setUser] = useState(getCurrentUser())
+  const [error, setError] = useState(null);
 
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -32,7 +33,7 @@ const Navbar = () => {
             </li>
 
             {user != null && <li class="nav-item">
-              <Link to="/" class="nav-link">Logout</Link>
+              <Link to="/logout" class="nav-link">Logout</Link>
             </li>}
             {user == null && <li class="nav-item">
               <Link to="/login" class="nav-link">Login</Link>

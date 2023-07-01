@@ -27,6 +27,7 @@ const AddOffering = () => {
   })
     .then(res => res.json())
     .then(data => data.forEach(element => {
+      console.log("called 1")
       nameMap.set(element.name, element.id);
       membersAray.push({ label: element.name, value: element });
     }));
@@ -38,12 +39,13 @@ const AddOffering = () => {
   })
     .then(res => res.json())
     .then(data => data.forEach(element => {
-      offeringTypes.push({label: element, value: element})
+      console.log("called 2")
+      offeringTypes.push({ label: element, value: element })
     }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("called 3")
     response = setResponse(await axios
       .post("http://localhost:3000/api/offering/new", {
         member, offeringType, amount, currency, date

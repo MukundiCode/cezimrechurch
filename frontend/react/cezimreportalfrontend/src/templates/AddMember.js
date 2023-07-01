@@ -19,12 +19,16 @@ const AddMember = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     response = setResponse(await axios
-    .post("http://localhost:3000/api/member/register", {
+      .post("http://localhost:3000/api/member/register", {
         name, surname, email, address, birthday
-    })
-    .then((response) => {
+      })
+      .then((response) => {
+        console.log(response.status)
+        if (response.status == 401) {
+          window.location.replace("/logout");
+        }
         return response;
-    }))
+      }))
   }
 
   const formFileds = [
@@ -62,9 +66,9 @@ const AddMember = () => {
           <button type="submit" class="btn btn-primary mt-3">Add Member</button>
           {
             response != null && (
-            (response.status == 200 && (<div className="success">The form was submitted successfully</div>)) || 
-            (response.status == 400 && (<div className="success">There was an error in submitting the form</div>)) || 
-            (response.status == 401 && (<div className="success">You are not authorized to add a member, please log in</div>))
+              (response.status == 200 && (<div className="success">The form was submitted successfully</div>)) ||
+              (response.status == 400 && (<div className="success">There was an error in submitting the form</div>)) ||
+              (response.status == 401 && (<div className="success">You are not authorized to add a member, please log in</div>))
             )
           }
         </form>

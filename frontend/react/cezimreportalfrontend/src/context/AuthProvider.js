@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
                 if (response.data.username) {
                     localStorage.setItem("user", JSON.stringify(response.data));
                 }
+                window.location.replace("/home");
                 return response.data;
             })
     }
