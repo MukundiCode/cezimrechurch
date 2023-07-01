@@ -1,4 +1,5 @@
 import { Chart } from "react-google-charts";
+import { CChart } from "@coreui/react-chartjs";
 import useFetch from "./useFetch";
 
 const PieChart = () => {
@@ -12,17 +13,17 @@ const PieChart = () => {
     return (
         <div class="card m-3">
             <div class="card-body">{stats &&
-                <Chart
-                    chartType="PieChart"
-                    data={[
-                        ["Category", "Amount"]
-                    ].concat(stats.map(v => {
-                        return [v.partnershipType, v.amount]
-                    }))
-                    }
-                    options={options}
-                    width={"100%"}
-                    height={"270px"}
+                <CChart
+                    type="doughnut"
+                    data={{
+                        labels: stats.map(v => { return [v.partnershipType] }),
+                        datasets: [
+                            {
+                                backgroundColor: ['#41B883', '#E46651'],
+                                data: stats.map(v => { return [v.amount] }),
+                            },
+                        ],
+                    }}
                 />
             }
             </div>

@@ -6,6 +6,7 @@ import com.christembassy.zimre.portal.domain.Member;
 import com.christembassy.zimre.portal.domain.Offering;
 import com.christembassy.zimre.portal.dto.OfferingStatisticsByMonthDTO;
 import com.christembassy.zimre.portal.dto.OfferingStatisticsByPartnershipTypeDTO;
+import com.christembassy.zimre.portal.dto.PartnershipStatisticsByMonthDTO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,5 +31,7 @@ public interface OfferingService {
   List<OfferingStatisticsByPartnershipTypeDTO> getOfferingStatistics();
 
   List<OfferingStatisticsByMonthDTO> getOfferingMonthlyStatistics();
+
+  List<PartnershipStatisticsByMonthDTO> getPartnershipStatisticsByMonth();
 
 }
