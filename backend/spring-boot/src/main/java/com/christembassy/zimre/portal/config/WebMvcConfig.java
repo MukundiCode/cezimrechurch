@@ -1,5 +1,6 @@
 package com.christembassy.zimre.portal.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.MessageSource;
@@ -29,6 +30,11 @@ public class WebMvcConfig implements WebMvcConfigurer, ApplicationContextAware {
     final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
     messageSource.setBasename("messages");
     return messageSource;
+  }
+
+  @Bean
+  public ModelMapper modelMapper() {
+    return new ModelMapper();
   }
 
   @Override
