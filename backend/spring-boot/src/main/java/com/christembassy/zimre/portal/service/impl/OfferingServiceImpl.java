@@ -37,6 +37,7 @@ public class OfferingServiceImpl implements OfferingService {
   }
 
   @Override
+  @Transactional
   public Offering findById(Long id) {
     return offeringRepository
             .findById(id)
@@ -44,6 +45,7 @@ public class OfferingServiceImpl implements OfferingService {
   }
 
   @Override
+  @Transactional
   public Set<Offering> findAll() {
     try {
       return offeringRepository.findAll();
@@ -68,6 +70,7 @@ public class OfferingServiceImpl implements OfferingService {
   }
 
   @Override
+  @Transactional
   public BigDecimal getTotalPartnership() {
     return offeringRepository
             .findAll()
@@ -77,6 +80,7 @@ public class OfferingServiceImpl implements OfferingService {
   }
 
   @Override
+  @Transactional
   public List<OfferingStatisticsByPartnershipTypeDTO> getOfferingStatistics() {
     try {
       return buildOfferingStatisticsDTO(new ArrayList<>(offeringRepository.findAll()));
@@ -86,6 +90,7 @@ public class OfferingServiceImpl implements OfferingService {
   }
 
   @Override
+  @Transactional
   public List<OfferingStatisticsByMonthDTO> getOfferingMonthlyStatistics() {
     return offeringRepository.findAll()
             .stream()
@@ -98,6 +103,7 @@ public class OfferingServiceImpl implements OfferingService {
   }
 
   @Override
+  @Transactional
   public List<PartnershipStatisticsByMonthDTO> getPartnershipStatisticsByMonth(){
     return offeringRepository.findAll()
             .stream()

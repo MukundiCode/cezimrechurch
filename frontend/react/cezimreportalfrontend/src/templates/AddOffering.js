@@ -25,9 +25,17 @@ const AddOffering = () => {
       "Content-Type": "application/json",
     }
   })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) { // error coming back from server
+        console.log(res.status)
+        if (res.status == 401) {
+          window.location.replace("/logout");
+        }
+        throw Error('could not fetch the data for that resource');
+      }
+      return res.json();
+    })
     .then(data => data.forEach(element => {
-      console.log("called 1")
       nameMap.set(element.name, element.id);
       membersAray.push({ label: element.name, value: element });
     }));
@@ -39,7 +47,6 @@ const AddOffering = () => {
   })
     .then(res => res.json())
     .then(data => data.forEach(element => {
-      console.log("called 2")
       offeringTypes.push({ label: element, value: element })
     }));
 
@@ -51,6 +58,9 @@ const AddOffering = () => {
         member, offeringType, amount, currency, date
       })
       .then((response) => {
+        if (response.status == 401) {
+          window.location.replace("/logout");
+        }
         return response;
       }))
 
