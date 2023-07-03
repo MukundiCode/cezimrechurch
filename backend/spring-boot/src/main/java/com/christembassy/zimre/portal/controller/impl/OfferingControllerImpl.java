@@ -26,66 +26,57 @@ public class OfferingControllerImpl {
 
   @PostMapping("/new")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<Offering> newOffering(@RequestBody @Valid Offering newOffering) {
-    System.out.println("newOffering = " + newOffering);
-    return ResponseEntity
-            .ok()
-            .body(offeringService.addNew(newOffering));
+  @ResponseBody
+  public Offering newOffering(@RequestBody @Valid Offering newOffering) {
+    return offeringService.addNew(newOffering);
   }
 
   @GetMapping("/{id}")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<Offering> findById(@PathVariable Long id) {
-    return ResponseEntity
-            .ok()
-            .body(offeringService.findById(id));
+  @ResponseBody
+  public Offering findById(@PathVariable Long id) {
+    return offeringService.findById(id);
   }
 
   @GetMapping("/all")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<List<Offering>> findAll() {
-    return ResponseEntity
-            .ok()
-            .body(new ArrayList<>(offeringService.findAll()));
+  @ResponseBody
+  public List<Offering> findAll() {
+    return new ArrayList<>(offeringService.findAll());
   }
 
   @GetMapping("/partnershipTypes")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<List<EPartnership>> getPartnerships(){
-    return ResponseEntity
-            .ok()
-            .body(offeringService.getPartnershipTypes());
+  @ResponseBody
+  public List<EPartnership> getPartnerships(){
+    return offeringService.getPartnershipTypes();
   }
 
   @GetMapping("/statistics")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<List<OfferingStatisticsByPartnershipTypeDTO>> getOfferingStatistics(){
-    return ResponseEntity
-            .ok()
-            .body(offeringService.getOfferingStatistics());
+  @ResponseBody
+  public List<OfferingStatisticsByPartnershipTypeDTO> getOfferingStatistics(){
+    return offeringService.getOfferingStatistics();
   }
 
   @GetMapping("/monthlyStatistics")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<List<OfferingStatisticsByMonthDTO>> getMonthlyStatistics(){
-    return ResponseEntity
-            .ok()
-            .body(offeringService.getOfferingMonthlyStatistics());
+  @ResponseBody
+  public List<OfferingStatisticsByMonthDTO> getMonthlyStatistics(){
+    return offeringService.getOfferingMonthlyStatistics();
   }
 
   @GetMapping("/getTotalPartnership")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<BigDecimal> getTotalPartnership(){
-    return ResponseEntity
-            .ok()
-            .body(offeringService.getTotalPartnership());
+  @ResponseBody
+  public BigDecimal getTotalPartnership(){
+    return offeringService.getTotalPartnership();
   }
 
   @GetMapping("/getPartnershipStatisticsByMonth")
   @PreAuthorize("hasRole('ADMIN')")
-  public ResponseEntity<List<PartnershipStatisticsByMonthDTO>> getPartnershipStatisticsByMonth(){
-    return ResponseEntity
-            .ok()
-            .body(offeringService.getPartnershipStatisticsByMonth());
+  @ResponseBody
+  public List<PartnershipStatisticsByMonthDTO> getPartnershipStatisticsByMonth(){
+    return offeringService.getPartnershipStatisticsByMonth();
   }
 }
