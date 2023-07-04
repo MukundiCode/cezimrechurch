@@ -42,7 +42,7 @@ public class PartnershipStatisticsByMonthDTO {
 
   private static List<BigDecimal> getOfferingTotalsByMonth(Map<Integer, List<Offering>> in) {
     return IntStream
-            .range(0, 12)
+            .range(1, 13)
             .mapToObj(i -> in.containsKey(i) ? sumOfferingList(in.get(i)) : BigDecimal.ZERO)
             .collect(Collectors.toList());
   }

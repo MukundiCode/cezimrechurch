@@ -7,20 +7,20 @@ const TopPartners = () => {
     return (
         <div class="card m-3">
             <div class="card-body" >
-            <span class="d-block h6 font-weight-normal">
-                            Top Partners
-                        </span>
-                <table class="table table-striped mt-4">
+            <h5 class="card-title mt-2">Top partners</h5>
+                <table class="table table-sm table-hover">
                     <thead>
-                        <th scope="col">Position</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Surname</th>
-                        <th scope="col">Amount</th>
+                        <tr>
+                            <th scope="col">Position</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">Amount</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {topPartners && topPartners.map((partner, index) => (
                             <tr>
-                                <th scope="row"> {index+1} </th>
+                                <th scope="row"> {index + 1} </th>
                                 <td>{partner.name}</td>
                                 <td>{partner.surname}</td>
                                 <td>{partner.totalPartnership}</td>

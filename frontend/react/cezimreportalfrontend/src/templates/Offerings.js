@@ -10,12 +10,15 @@ const Offerings = () => {
         <h1>
           Offerings
         </h1>
+        <hr></hr>
+      </div >
+      <div >
+        {error && <div>{error}</div>}
+        {isPending && <div>Loading...</div>}
+        {offerings && <OfferingList offerings={offerings} />}
       </div>
-      { error && <div>{ error }</div> }
-      { isPending && <div>Loading...</div> }
-      { offerings && <OfferingList offerings={offerings} /> }
     </div>
   );
 }
- 
+
 export default Offerings;
