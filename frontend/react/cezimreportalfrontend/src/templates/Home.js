@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
-import Card from 'react-bootstrap/Card';
 import StatsCard from "./StatsCard";
 import PieChart from "./PieChart";
-import BarChart from "./BarChart.js";
+import LineChart from "./LineChart.js";
 import TopPartners from "./TopPartners";
 
 const Home = () => {
 
+  const colors = ['#ef476f','#ffd166','#06d6a0','#118ab2','#073b4c']
 
   return (
     <div class="bg-light">
@@ -27,26 +26,15 @@ const Home = () => {
               <div class="col">
                 <StatsCard header={"Total Members"} url={'http://localhost:3000/api/member/total'}></StatsCard>
               </div>
-              <PieChart class="justify-content-center"></PieChart>
+              <PieChart class="justify-content-center" colors={colors}></PieChart>
             </div>
           </div>
           <div class="col-8">
-            <BarChart></BarChart>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm">
-            <div >
-              <TopPartners></TopPartners>
-            </div>
+            <LineChart colors={colors}></LineChart>
+            <TopPartners></TopPartners>
           </div>
         </div>
       </div>
-
-
-
-
     </div>
   );
 }

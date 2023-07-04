@@ -2,7 +2,7 @@ import { Chart } from "react-google-charts";
 import { CChart } from "@coreui/react-chartjs";
 import useFetch from "./useFetch";
 
-const PieChart = () => {
+const PieChart = ({colors: colors}) => {
 
     const { error, isPending, data: stats } = useFetch('http://localhost:3000/api/offering/statistics')
 
@@ -12,6 +12,7 @@ const PieChart = () => {
 
     return (
         <div class="card m-3">
+            <h5 class="card-title mt-2">Partnership compared by category</h5>
             <div class="card-body">{stats &&
                 <CChart
                     type="doughnut"
@@ -19,7 +20,7 @@ const PieChart = () => {
                         labels: stats.map(v => { return [v.partnershipType] }),
                         datasets: [
                             {
-                                backgroundColor: ['#41B883', '#E46651'],
+                                backgroundColor: colors,
                                 data: stats.map(v => { return [v.amount] }),
                             },
                         ],

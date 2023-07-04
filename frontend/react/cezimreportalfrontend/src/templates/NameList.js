@@ -4,12 +4,14 @@ const NameList = ({ names: members }) => {
 
     return (
         <div >
-            <table class="table table-striped mt-4">
+            <table class="table table-hover">
                 <thead>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">Phone Number</th>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Address</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {members.map((member, index) => (
@@ -17,7 +19,7 @@ const NameList = ({ names: members }) => {
                             <th scope="row"> {index + 1} </th>
                             <td>{member.name}</td>
                             <td>{member.surname}</td>
-                            <td>{member.phoneNumber}</td>
+                            <td>{member.address}</td>
                             <td>
                                 <Link to={`/member/${member.id}`}>
                                     <button class="btn btn-primary">View</button>

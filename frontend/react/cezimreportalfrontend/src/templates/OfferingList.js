@@ -4,22 +4,24 @@ const OfferingList = ({ offerings }) => {
 
     return (
         <div >
-            <table class="table table-striped mt-4">
+            <table class="table table-hover">
                 <thead>
-                    <th scope= "col">O-id</th>
-                    {/* <th scope= "col">Member</th> */}
-                    <th scope= "col">Amount</th>
-                    <th scope= "col">Date</th>
+                    <tr>
+                        <th scope="col">O-id</th> 
+                        <th scope= "col">Category</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {offerings.map(offering => (
-                    <tr>
-                        <th scope = "row"> {offering.id} </th>
-                        {/* <td>{offering.member.name + " " +offering.member.surname }</td> */}
-                        <td>{offering.amount + offering.currency}</td>
-                        <td>{offering.date}</td>
-                    </tr>
-                ))}
+                    {offerings.map(offering => (
+                        <tr>
+                            <th scope="row"> {offering.id} </th>
+                            <td>{offering.offeringType }</td>
+                            <td>{offering.amount + offering.currency}</td>
+                            <td>{offering.date}</td>
+                        </tr>
+                    ))}
                 </tbody>
 
 
@@ -28,5 +30,5 @@ const OfferingList = ({ offerings }) => {
     );
 
 }
- 
+
 export default OfferingList;

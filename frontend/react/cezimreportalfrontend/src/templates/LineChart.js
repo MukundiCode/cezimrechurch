@@ -1,8 +1,7 @@
-import { Chart } from "react-google-charts";
 import useFetch from "./useFetch";
 import { CChart } from "@coreui/react-chartjs";
 
-const BarChart = () => {
+const LineChart = ({colors: colors}) => {
 
   const { error, isPending, data: stats } = useFetch('http://localhost:3000/api/offering/getPartnershipStatisticsByMonth')
 
@@ -15,12 +14,15 @@ const BarChart = () => {
 
   return (
     <div class="card m-3">
+      <h5 class="card-title mt-2">Monthly partnership per category</h5>
       <div class=" card-body" >{stats &&
         <CChart
           type="line"
           data={{
             labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
-            datasets: stats,
+            datasets: stats.map((s, index) => {
+              return {label: s.label, borderColor: colors[index], pointBackgroundColor: colors[index], data: s.data}
+            }),
           }}
         />
       }</div>
@@ -29,4 +31,4 @@ const BarChart = () => {
 
 }
 
-export default BarChart
+export default LineChart
