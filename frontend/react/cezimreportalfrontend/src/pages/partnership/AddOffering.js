@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
@@ -16,39 +15,59 @@ const AddOffering = () => {
   let [response, setResponse] = useState()
 
   const nameMap = new Map();
-  const membersAray = [];
-  const offeringTypes = []
+  const [membersAray, setMembersArray] = useState([]);
+  const [partnershipTypes, setPartnershipTypes] = useState([])
   const currencies = [{ label: "USD", value: "USD" }, { label: "ZWL", value: "ZWL" }, { label: "ZAR", value: "ZAR" }];
 
-  fetch('http://localhost:3000/api/member/all', {
-    headers: {
-      "Content-Type": "application/json",
-    }
-  })
-    .then(res => {
-      if (!res.ok) { // error coming back from server
-        console.log(res.status)
-        if (res.status == 401) {
-          window.location.replace("/logout");
-        }
-        throw Error('could not fetch the data for that resource');
+  const loadMembers = async () => {
+    fetch('http://localhost:3000/api/member/all', {
+      headers: {
+        "Content-Type": "application/json",
       }
-      return res.json();
     })
-    .then(data => data.forEach(element => {
-      nameMap.set(element.name, element.id);
-      membersAray.push({ label: element.name, value: element });
-    }));
+      .then(res => {
+        if (!res.ok) { // error coming back from server
+          console.log(res.status)
+          if (res.status == 401) {
+            window.location.replace("/logout");
+          }
+          throw Error('could not fetch the data for that resource');
+        }
+        return res.json();
+      })
+      .then(data => {
+        let arr = []
+        data.forEach(element => {
+        nameMap.set(element.name, element.id);
+        arr.push({ label: element.name, value: element });
+      })
+      setMembersArray(arr)
+    });
+  }
 
-  fetch('http://localhost:3000/api/offering/partnershipTypes', {
-    headers: {
-      "Content-Type": "application/json",
-    }
-  })
-    .then(res => res.json())
-    .then(data => data.forEach(element => {
-      offeringTypes.push({ label: element, value: element })
-    }));
+  const loadPartnershipTypes = async () => {
+    fetch('http://localhost:3000/api/offering/partnershipTypes', {
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        let arr = []
+        data.forEach(element => {
+          arr.push({ label: element, value: element })
+        })
+        setPartnershipTypes(arr)
+      });
+  }
+
+  useEffect(() => {
+    loadMembers()
+  }, [])
+
+  useEffect(() => {
+    loadPartnershipTypes()
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,7 +104,7 @@ const AddOffering = () => {
 
           <div class="form-group mt-3">
             <Select
-              options={offeringTypes}
+              options={partnershipTypes}
               onChange={(e) => setOfferingType(e.value)}
               placeholder="Partnership Category"
             />
