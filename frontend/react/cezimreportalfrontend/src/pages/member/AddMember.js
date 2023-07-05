@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import FormField from "./FormField";
+import FormField from "../../templates/FormField";
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import axios from "axios";

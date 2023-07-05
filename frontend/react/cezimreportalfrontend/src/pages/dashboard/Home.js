@@ -1,7 +1,7 @@
-import StatsCard from "./StatsCard";
-import PieChart from "./PieChart";
-import LineChart from "./LineChart.js";
-import TopPartners from "./TopPartners";
+import StatsCard from "./components/StatsCard";
+import PieChart from "./components/PieChart";
+import LineChart from "./components/LineChart.js";
+import TopPartners from "./components/TopPartners";
 
 const Home = () => {
 

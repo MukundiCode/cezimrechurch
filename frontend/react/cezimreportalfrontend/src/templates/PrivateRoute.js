@@ -1,5 +1,5 @@
 import { Redirect } from 'react-router-dom'
-import AuthContext, { AuthProvider } from "../../context/AuthProvider";
+import AuthContext, { AuthProvider } from "../context/AuthProvider";
 import { useContext, useState } from "react";
 
 

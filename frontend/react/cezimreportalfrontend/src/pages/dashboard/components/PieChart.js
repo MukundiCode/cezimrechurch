@@ -1,6 +1,5 @@
-import { Chart } from "react-google-charts";
 import { CChart } from "@coreui/react-chartjs";
-import useFetch from "./useFetch";
+import useFetch from '../../../hooks/useFetch';
 
 const PieChart = ({colors: colors}) => {
 
