@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import FormField from "./FormField";
+import FormField from "../../templates/FormField";
 
 const Register = () => {
   const [name, setName] = useState('');

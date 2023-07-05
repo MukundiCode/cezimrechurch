@@ -1,5 +1,5 @@
-import NameList from "./NameList";
-import useFetch from "./useFetch";
+import NameList from "./components/NameList";
+import useFetch from "../../hooks/useFetch";
 
 const MembersList = () => {
   const { error, isPending, data: names } = useFetch('http://localhost:3000/api/member/all', 'GET')

@@ -1,23 +1,20 @@
 import './App.css';
-import NameList from './templates/NameList';
 import Navbar from './templates/Navbar';
-import MembersList from './templates/MembersList';
-import AddOffering from './templates/AddOffering';
 import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
-import Offerings from './templates/Offerings';
-import Home from './templates/Home';
-import Register from './templates/Register';
-import Login from './templates/Login';
-import AddChurch from './templates/AddChurch';
-import PrivateRoute from './templates/utils/PrivateRoute';
 import { AuthProvider } from './context/AuthProvider';
-import AddMember from './templates/AddMember';
-import Member from './templates/Member';
-import Logout from './templates/Logout';
+import PrivateRoute from './templates/PrivateRoute';
+import Home from './pages/dashboard/Home';
+import MembersList from './pages/member/MembersList';
+import Member from './pages/member/Member';
+import Offerings from './pages/partnership/Offerings';
+import AddMember from './pages/member/AddMember';
+import AddOffering from './pages/partnership/AddOffering';
+import Register from './pages/auth/Register';
+import Login from './pages/auth/Login';
+import Logout from './pages/auth/Logout';
 
 
 function App() {

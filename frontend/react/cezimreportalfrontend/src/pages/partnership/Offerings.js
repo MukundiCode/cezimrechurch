@@ -1,5 +1,5 @@
-import OfferingList from "./OfferingList";
-import useFetch from "./useFetch";
+import OfferingList from "./components/OfferingList";
+import useFetch from "../../hooks/useFetch";
 
 const Offerings = () => {
   const { error, isPending, data: offerings } = useFetch('http://localhost:3000/api/offering/all')

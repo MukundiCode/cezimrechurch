@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
-import FormField from "./FormField";
+import FormField from "../../templates/FormField";
 import axios from "axios";
 
 

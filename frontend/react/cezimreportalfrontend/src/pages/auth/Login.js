@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import FormField from "./FormField";
-import AuthContext from "../context/AuthProvider";
+import FormField from "../../templates/FormField";
+import AuthContext from "../../context/AuthProvider";
 
 const Login = () => {
   const [username, setName] = useState('');

@@ -1,5 +1,5 @@
-import useFetch from "./useFetch";
 import { CChart } from "@coreui/react-chartjs";
+import useFetch from '../../../hooks/useFetch';
 
 const LineChart = ({colors: colors}) => {
 

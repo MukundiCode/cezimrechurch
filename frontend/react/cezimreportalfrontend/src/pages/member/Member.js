@@ -1,6 +1,6 @@
 import { useHistory, useParams } from "react-router-dom";
-import useFetch from "./useFetch";
-import OfferingList from "./OfferingList";
+import useFetch from "../../hooks/useFetch";
+import OfferingList from "../partnership/components/OfferingList";
 
 const Member = () => {
 
