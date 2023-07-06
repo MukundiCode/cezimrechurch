@@ -1,6 +1,6 @@
 import { useHistory, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import OfferingList from "../partnership/components/OfferingList";
+import PartnershipList from "../partnership/components/PartnershipList";
 
 const Member = () => {
 
@@ -25,7 +25,7 @@ const Member = () => {
                         <p>Email: {member.email}</p>
                         <p>Address: {member.address}</p>
                     </div>
-                    <OfferingList offerings={member.offerings} />
+                    <PartnershipList offerings={member.offerings} />
                 </div>
             }
         </div>

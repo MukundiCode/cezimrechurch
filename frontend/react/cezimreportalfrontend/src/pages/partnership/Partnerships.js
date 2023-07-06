@@ -1,24 +1,24 @@
-import OfferingList from "./components/OfferingList";
+import PartnershipList from "./components/PartnershipList";
 import useFetch from "../../hooks/useFetch";
 
-const Offerings = () => {
+const Partnerships = () => {
   const { error, isPending, data: offerings } = useFetch('http://localhost:3000/api/offering/all')
 
   return (
     <div className="home">
       <div class="mt-2">
         <h1>
-          Offerings
+        Partnerships
         </h1>
         <hr></hr>
       </div >
       <div >
         {error && <div>{error}</div>}
         {isPending && <div>Loading...</div>}
-        {offerings && <OfferingList offerings={offerings} />}
+        {offerings && <PartnershipList offerings={offerings} />}
       </div>
     </div>
   );
 }
 
-export default Offerings;
+export default Partnerships;

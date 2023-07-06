@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const OfferingList = ({ offerings }) => {
+const PartnershipList = ({ offerings }) => {
 
     return (
         <div >
@@ -31,4 +31,4 @@ const OfferingList = ({ offerings }) => {
 
 }
 
-export default OfferingList;
+export default PartnershipList;

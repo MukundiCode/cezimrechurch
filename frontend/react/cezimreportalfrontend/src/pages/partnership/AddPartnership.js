@@ -6,7 +6,7 @@ import FormField from "../../templates/FormField";
 import axios from "axios";
 
 
-const AddOffering = () => {
+const AddPartnership = () => {
   const [member, setMember] = useState('');
   const [offeringType, setOfferingType] = useState('');
   const [amount, setAmount] = useState('');
@@ -146,4 +146,4 @@ const AddOffering = () => {
 
 }
 
-export default AddOffering;
+export default AddPartnership;

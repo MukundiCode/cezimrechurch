@@ -9,9 +9,9 @@ import PrivateRoute from './templates/PrivateRoute';
 import Home from './pages/dashboard/Home';
 import MembersList from './pages/member/MembersList';
 import Member from './pages/member/Member';
-import Offerings from './pages/partnership/Offerings';
+import Partnerships from './pages/partnership/Partnerships';
 import AddMember from './pages/member/AddMember';
-import AddOffering from './pages/partnership/AddOffering';
+import AddPartnership from './pages/partnership/AddPartnership';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import Logout from './pages/auth/Logout';
@@ -48,7 +48,7 @@ function App() {
               </Route>
               <Route exact path="/offerings">
                 <PrivateRoute>
-                  <Offerings />
+                  <Partnerships />
                 </PrivateRoute>
               </Route>
               <Route exact path="/addMember">
@@ -58,7 +58,7 @@ function App() {
               </Route>
               <Route exact path="/addOffering">
                 <PrivateRoute>
-                  <AddOffering />
+                  <AddPartnership />
                 </PrivateRoute>
               </Route>
               <Route exact path="/register">
