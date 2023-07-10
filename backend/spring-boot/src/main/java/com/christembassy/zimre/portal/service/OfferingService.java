@@ -18,7 +18,7 @@ public interface OfferingService {
 
   Offering findById(Long id);
 
-  Set<Offering> findAll();
+  List<Offering> findAll();
 
   Set<Offering> findByMember(Member member);
 

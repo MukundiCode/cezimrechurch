@@ -12,7 +12,7 @@ public interface MemberService {
 
   Member findById(Long id);
 
-  Set<Member> findAll();
+  List<Member> findAll();
 
   List<TopPartnerDTO> getTopFivePartners();
 

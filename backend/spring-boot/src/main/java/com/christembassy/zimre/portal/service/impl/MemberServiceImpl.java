@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
 
   @Override
   @Transactional
-  public Set<Member> findAll() {
+  public List<Member> findAll() {
     try {
       return memberRepository.findAll();
     } catch (Exception e) {

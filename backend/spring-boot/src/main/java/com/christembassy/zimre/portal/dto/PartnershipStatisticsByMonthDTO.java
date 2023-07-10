@@ -3,15 +3,16 @@ package com.christembassy.zimre.portal.dto;
 import com.christembassy.zimre.portal.domain.EPartnership;
 import com.christembassy.zimre.portal.domain.Offering;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static com.christembassy.zimre.portal.service.Utils.sumOfferingList;
 

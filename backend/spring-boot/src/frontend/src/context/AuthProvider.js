@@ -1,7 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
-import jwtDecode from 'jwt-decode';
-import Cookies from 'js-cookie';
-import { Redirect, useHistory } from 'react-router-dom'
+import { createContext } from 'react'
 import axios from 'axios';
 
 
@@ -38,6 +35,7 @@ export const AuthProvider = ({ children }) => {
 
 
     const getCurrentUser = () => {
+        return "Mukundi"
         return JSON.parse(localStorage.getItem("user"));
     };
 

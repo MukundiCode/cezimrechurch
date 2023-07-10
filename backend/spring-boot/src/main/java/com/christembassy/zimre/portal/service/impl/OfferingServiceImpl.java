@@ -46,7 +46,7 @@ public class OfferingServiceImpl implements OfferingService {
 
   @Override
   @Transactional
-  public Set<Offering> findAll() {
+  public List<Offering> findAll() {
     try {
       return offeringRepository.findAll();
     } catch (Exception e) {
