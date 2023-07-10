@@ -1,7 +1,6 @@
 package com.christembassy.zimre.portal.config;
 
 import com.christembassy.zimre.portal.domain.Church;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -11,7 +10,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
@@ -24,7 +22,7 @@ public class JPAConfig {
     Properties properties = new Properties();
     String name;
     try {
-      properties.load(WebMvcConfig.class.getClassLoader().getResourceAsStream("application.properties"));
+      properties.load(WebMvcConfig.class.getClassLoader().getResourceAsStream("application-prod.properties"));
       name = properties.getProperty(key);
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -52,7 +50,7 @@ public class JPAConfig {
   @Profile("!test")
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-    factoryBean.setDataSource(getDataSource());
+//    factoryBean.setDataSource(getDataSource());
     factoryBean.setPackagesToScan("com.christembassy.zimre.portal.domain");
     JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     factoryBean.setJpaVendorAdapter(vendorAdapter);
