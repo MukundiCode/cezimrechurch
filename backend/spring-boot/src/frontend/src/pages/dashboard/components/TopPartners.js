@@ -2,7 +2,7 @@ import useFetch from '../../../hooks/useFetch';
 
 const TopPartners = () => {
 
-    const { error, isPending, data: topPartners } = useFetch('http://localhost:8080/api/member/getTopFivePartners')
+    const { error, isPending, data: topPartners } = useFetch('/api/member/getTopFivePartners')
 
     return (
         <div class="card m-3">

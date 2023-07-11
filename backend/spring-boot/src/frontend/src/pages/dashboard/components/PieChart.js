@@ -3,7 +3,7 @@ import useFetch from '../../../hooks/useFetch';
 
 const PieChart = ({colors: colors}) => {
 
-    const { error, isPending, data: stats } = useFetch('http://localhost:8080/api/offering/statistics')
+    const { error, isPending, data: stats } = useFetch('/api/offering/statistics')
 
     const options = {
         title: "My Daily Activities",

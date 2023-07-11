@@ -1,5 +1,3 @@
-import { useState, useEffect, useContext } from 'react';
-import AuthContext from "../context/AuthProvider";
 import axios from 'axios';
 
 async function GenerictPost(url, body) {

@@ -3,7 +3,7 @@ import useFetch from '../../../hooks/useFetch';
 
 const LineChart = ({colors: colors}) => {
 
-  const { error, isPending, data: stats } = useFetch('http://localhost:8080/api/offering/getPartnershipStatisticsByMonth')
+  const { error, isPending, data: stats } = useFetch('/api/offering/getPartnershipStatisticsByMonth')
 
   const options = {
     chart: {

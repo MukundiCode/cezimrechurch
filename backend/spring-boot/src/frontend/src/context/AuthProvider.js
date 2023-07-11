@@ -8,7 +8,7 @@ export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
 
-    const API_URL = "http://localhost:8080/api/auth/";
+    const API_URL = "/api/auth/";
 
     let loginUser = async (e, username, password) => {
         e.preventDefault()
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
 
     const getCurrentUser = () => {
-        return "Mukundi"
+        // return "Mukundi";
         return JSON.parse(localStorage.getItem("user"));
     };
 

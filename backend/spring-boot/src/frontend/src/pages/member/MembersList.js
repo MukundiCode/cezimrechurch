@@ -2,7 +2,7 @@ import NameList from "./components/NameList";
 import useFetch from "../../hooks/useFetch";
 
 const MembersList = () => {
-  const { error, isPending, data: names } = useFetch('http://localhost:8080/api/member/all', 'GET')
+  const { error, isPending, data: names } = useFetch('/api/member/all', 'GET')
 
   return (
     <div className="home">

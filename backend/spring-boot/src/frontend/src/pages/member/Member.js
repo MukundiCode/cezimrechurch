@@ -5,7 +5,7 @@ import PartnershipList from "../partnership/components/PartnershipList";
 const Member = () => {
 
     const { id } = useParams();
-    const { error, isPending, data: member } = useFetch('http://localhost:8080/api/member/' + id, 'GET')
+    const { error, isPending, data: member } = useFetch('/api/member/' + id, 'GET')
 
     return (
         <div className="home">

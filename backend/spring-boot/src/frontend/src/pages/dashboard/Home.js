@@ -21,10 +21,10 @@ const Home = () => {
           <div class="col-4">
             <div class="row">
               <div class="col">
-                <StatsCard header={"Total Partnership"} url={'http://localhost:8080/api/offering/getTotalPartnership'}></StatsCard>
+                <StatsCard header={"Total Partnership"} url={'/api/offering/getTotalPartnership'}></StatsCard>
               </div>
               <div class="col">
-                <StatsCard header={"Total Members"} url={'http://localhost:8080/api/member/total'}></StatsCard>
+                <StatsCard header={"Total Members"} url={'/api/member/total'}></StatsCard>
               </div>
               <PieChart class="justify-content-center" colors={colors}></PieChart>
             </div>

@@ -2,13 +2,13 @@ import PartnershipList from "./components/PartnershipList";
 import useFetch from "../../hooks/useFetch";
 
 const Partnerships = () => {
-  const { error, isPending, data: offerings } = useFetch('http://localhost:8080/api/offering/all')
+  const { error, isPending, data: offerings } = useFetch('/api/offering/all')
 
   return (
     <div className="home">
       <div class="mt-2">
         <h1>
-        Partnerships
+          Partnerships
         </h1>
         <hr></hr>
       </div >

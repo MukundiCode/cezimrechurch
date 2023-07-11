@@ -1,6 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import AuthContext from "../context/AuthProvider";
-import axios from 'axios';
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);

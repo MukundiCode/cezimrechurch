@@ -20,7 +20,7 @@ const AddPartnership = () => {
   const currencies = [{ label: "USD", value: "USD" }, { label: "ZWL", value: "ZWL" }, { label: "ZAR", value: "ZAR" }];
 
   const loadMembers = async () => {
-    fetch('http://localhost:8080/api/member/all', {
+    fetch('/api/member/all', {
       headers: {
         "Content-Type": "application/json",
       }
@@ -38,15 +38,15 @@ const AddPartnership = () => {
       .then(data => {
         let arr = []
         data.forEach(element => {
-        nameMap.set(element.name, element.id);
-        arr.push({ label: element.name, value: element });
-      })
-      setMembersArray(arr)
-    });
+          nameMap.set(element.name, element.id);
+          arr.push({ label: element.name, value: element });
+        })
+        setMembersArray(arr)
+      });
   }
 
   const loadPartnershipTypes = async () => {
-    fetch('http://localhost:8080/api/offering/partnershipTypes', {
+    fetch('/api/offering/partnershipTypes', {
       headers: {
         "Content-Type": "application/json",
       }
@@ -73,7 +73,7 @@ const AddPartnership = () => {
     e.preventDefault();
     console.log("called 3")
     response = setResponse(await axios
-      .post("http://localhost:8080/api/offering/new", {
+      .post("/api/offering/new", {
         member, offeringType, amount, currency, date
       })
       .then((response) => {

@@ -19,7 +19,7 @@ const AddMember = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     response = setResponse(await axios
-      .post("http://localhost:8080/api/member/register", {
+      .post("/api/member/register", {
         name, surname, email, address, birthday
       })
       .then((response) => {

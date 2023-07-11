@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './templates/Navbar';
-import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Routes } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'

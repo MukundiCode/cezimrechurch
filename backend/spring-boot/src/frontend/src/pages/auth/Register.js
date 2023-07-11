@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import FormField from "../../templates/FormField";
 
@@ -25,7 +24,7 @@ const Register = () => {
                     password2: password2, 
                     };
     console.log(member);
-    fetch('http://127.0.0.1:8000/auth/register/', {
+    fetch('api/auth/signup', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(member)

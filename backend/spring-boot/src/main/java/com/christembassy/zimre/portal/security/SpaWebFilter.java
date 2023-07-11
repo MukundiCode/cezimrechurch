@@ -15,7 +15,6 @@ public class SpaWebFilter extends OncePerRequestFilter {
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                   FilterChain filterChain) throws ServletException, IOException {
-    System.out.println("SpaWebFilter.doFilterInternal");
     String path = request.getRequestURI();
     Authentication user = SecurityContextHolder.getContext().getAuthentication();
     if (user != null && !path.startsWith("/api") && !path.contains(".") && path.matches("/(.*)")) {
