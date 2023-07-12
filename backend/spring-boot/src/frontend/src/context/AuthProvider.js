@@ -29,7 +29,9 @@ export const AuthProvider = ({ children }) => {
     let logout = () => {
         localStorage.removeItem("user");
         return axios.post(API_URL + "signout").then((response) => {
-            return response.data;
+            console.log(response)
+            // window.location.replace("/");
+            // return response.data;
         });
     };
 
