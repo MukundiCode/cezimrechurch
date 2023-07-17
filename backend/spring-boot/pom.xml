@@ -95,7 +95,7 @@
 
     <profiles>
         <profile>
-            <id>prod</id>
+            <id>dev</id>
             <build>
                 <plugins>
                     <plugin>
@@ -175,7 +175,7 @@
                 </plugins>
             </build>
             <properties>
-                <spring.profiles.active>prod</spring.profiles.active>
+                <spring.profiles.active>dev</spring.profiles.active>
             </properties>
         </profile>
     </profiles>
