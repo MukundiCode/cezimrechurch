@@ -93,9 +93,9 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>dev</id>
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>dev</id>-->
             <build>
                 <plugins>
                     <plugin>
@@ -174,11 +174,11 @@
 
                 </plugins>
             </build>
-            <properties>
-                <spring.profiles.active>dev</spring.profiles.active>
-            </properties>
-        </profile>
-    </profiles>
+<!--            <properties>-->
+<!--                <spring.profiles.active>dev</spring.profiles.active>-->
+<!--            </properties>-->
+<!--        </profile>-->
+<!--    </profiles>-->
 
     <repositories>
         <repository>

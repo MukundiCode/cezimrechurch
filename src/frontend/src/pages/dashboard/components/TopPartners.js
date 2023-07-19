@@ -14,7 +14,7 @@ const TopPartners = () => {
                             <th scope="col">Position</th>
                             <th scope="col">Name</th>
                             <th scope="col">Surname</th>
-                            <th scope="col">Amount</th>
+                            <th scope="col">Amount (USD)</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -21,7 +21,7 @@ const Home = () => {
           <div class="col-4">
             <div class="row">
               <div class="col">
-                <StatsCard header={"Total Partnership"} url={'/api/offering/getTotalPartnership'}></StatsCard>
+                <StatsCard header={"Total Partnership"} url={'/api/offering/getTotalPartnership'} unit={"USD"}></StatsCard>
               </div>
               <div class="col">
                 <StatsCard header={"Total Members"} url={'/api/member/total'}></StatsCard>

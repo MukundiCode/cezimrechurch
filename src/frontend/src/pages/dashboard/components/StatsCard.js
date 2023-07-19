@@ -1,6 +1,6 @@
 import useFetch from '../../../hooks/useFetch';
 
-const StatsCard = ({header, url}) => {
+const StatsCard = ({header, url, unit}) => {
 
     const { error, isPending, data: value } = useFetch(url)
 
@@ -13,7 +13,7 @@ const StatsCard = ({header, url}) => {
                         <span class="d-block h6 font-weight-normal">
                             {header}
                         </span>
-                        <h5 class="h3 font-weight-bold mb-1">{value}</h5>
+                        <h5 class="h3 font-weight-bold mb-1">{value + " " + (unit ? unit: "")}</h5>
                         {/* <div class="small mt-2">
                             <span class="fas fa-angle-up text-success"></span>
                             <span class="text-success font-weight-bold">18.2%</span> higher vs previous month
