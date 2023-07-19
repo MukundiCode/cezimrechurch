@@ -17,8 +17,8 @@ This is a Spring Boot and React web application for my local church, that helps 
 To run this project locally, you need to have Java 11, Node.js, npm, and PostgreSQL installed on your machine.
 
 1. Clone this repository: `git clone https://github.com/MukundiCode/cezimrechurch.git`
-2. Navigate to the backend folder: `cd backend`
-<!--3. Create a `.properties` file with the following variables: -->
+2. Navigate to the resources folder
+3. Create a `.properties` file with hibernate and jwt properties
 
 3. Run the backend application: `./mvnw spring-boot:run`
 4. Navigate to the frontend folder: `cd ../frontend`
