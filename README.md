@@ -2,6 +2,8 @@
 
 This is a Spring Boot and React web application for my local church, that helps the church admin manage church members and monitor church finances.
 
+![alt text](https://github.com/MukundiCode/cezimrechurch/blob/master/docs/imgs/dashboard.png)
+
 ## Features
 
 - CRUD operations for church members, groups, and givings
