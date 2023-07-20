@@ -1,4 +1,4 @@
-package com.christembassy.zimre.portal.controller.impl;
+package com.christembassy.zimre.portal.controller;
 
 import com.christembassy.zimre.portal.domain.EPartnership;
 import com.christembassy.zimre.portal.domain.Offering;
