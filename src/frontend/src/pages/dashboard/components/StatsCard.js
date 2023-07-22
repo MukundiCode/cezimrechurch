@@ -5,8 +5,8 @@ const StatsCard = ({header, url, unit}) => {
     const { error, isPending, data: value } = useFetch(url)
 
     return (
-        <div class="col-12  m-3">
-            <div class="card ">
+        // <div class="col-12  m-3">
+            <div class="card m-3">
                 <div class="card-body d-block d-md-flex align-items-center justify-content-center">
                     <div class="icon icon-shape icon-md icon-shape-primary rounded-circle mr-3 mb-4 mb-md-0"><span class="fas fa-wallet"></span></div>
                     <div>
@@ -21,7 +21,7 @@ const StatsCard = ({header, url, unit}) => {
                     </div>
                 </div>
             </div>
-        </div>
+        // </div>
     )
 
 }

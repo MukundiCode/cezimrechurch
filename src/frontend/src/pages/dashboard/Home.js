@@ -17,9 +17,9 @@ const Home = () => {
       </div>
 
       <div class="container">
-        <div class="row no-gutters">
-          <div class="col-4">
-            <div class="row">
+        <div class="flex-row-sm row">
+          <div class="col-sm">
+            <div class="flex-row">
               <div class="col">
                 <StatsCard header={"Total Partnership"} url={'/api/offering/getTotalPartnership'} unit={"USD"}></StatsCard>
               </div>
@@ -29,7 +29,7 @@ const Home = () => {
               <PieChart class="justify-content-center" colors={colors}></PieChart>
             </div>
           </div>
-          <div class="col-8">
+          <div class="col">
             <LineChart colors={colors}></LineChart>
             <TopPartners></TopPartners>
           </div>
