@@ -1,6 +1,6 @@
 package com.christembassy.zimre.portal.config;
 
-import com.christembassy.zimre.portal.domain.Church;
+import com.christembassy.zimre.portal.church.Church;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
