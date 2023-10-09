@@ -1,9 +1,12 @@
 package com.christembassy.zimre.portal.auth.payload.request;
 
+import lombok.AllArgsConstructor;
+
 import java.util.Set;
 
 import javax.validation.constraints.*;
 
+@AllArgsConstructor
 public class SignupRequest {
   @NotBlank
   @Size(min = 3, max = 20)
