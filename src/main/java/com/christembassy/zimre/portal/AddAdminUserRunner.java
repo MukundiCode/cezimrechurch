@@ -27,10 +27,11 @@ public class AddAdminUserRunner implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
+    log.info("Attempting to add user...");
     ResponseEntity response = authController.registerUser(
             new SignupRequest("Admin",
                     "tinashechitamba@outlook.com",
-                    new HashSet<>(Arrays.asList(ERole.ROLE_ADMIN.toString(), ERole.ROLE_USER.toString())),
+                    new HashSet<>(Arrays.asList("admin")),
                     password));
     if (response.getStatusCode().equals(HttpStatus.OK)) log.info("Master user created");
     else log.info("Master user already exists");
